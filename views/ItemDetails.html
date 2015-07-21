@@ -1,0 +1,184 @@
+<section xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+    <!--header -->
+    <div class="control-header col-sm-11" ng-init="get_suppliers()" >
+        <h1 align="center">Item Details </h1>
+    </div>
+
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
+
+    <!--Supplire names -->
+    <form class="form-inline" role="form" ng-submit="submit()">
+        <div class="control-label col-sm-3">
+            <div class="col-xs-3">
+            </div>
+        </div>
+
+
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label class="control-label" style="padding-right:22px">Supplier Name</label>
+
+
+            <select class="form-control" style="width:270px"  ng-model="locId">
+                <option ng-repeat="supplier in pagedItems " value="{{supplier.id }}">{{ supplier.full_name}}</option>
+            </select>
+
+
+
+        </div>
+
+
+
+</br>
+        </br>
+        </br>
+        </br>
+
+<!--Item Name-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label  class="control-label" style="padding-right:40px">Supply Itam</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-th-list red"></i></span>
+                <input class="form-control"   ng-model="item" input type="text" required placeholder="Enter Item Name">
+            </div>
+        </div>
+</br>
+        </br>
+        </br>
+        </br>
+
+
+
+        <!--Unite-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="itemunite" class="control-label" style="padding-right:85px">Unite</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode red"></i></span>
+                <input class="form-control" id="itemunite"  ng-model="itemunite" input type="text" required placeholder="Enter Unite">
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+        <!--Unite Price-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="unitprice" class="control-label" style="padding-right:50px">Unite Price</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-usd red"></i></span>
+                <input class="form-control" id="unitprice"  ng-model="itemunitprice" input type="text" required placeholder="Enter Unite Price">
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+        <!--Quantity-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="quantity" class="control-label" style="padding-right:65px">Quantity</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-align-justify red"></i></span>
+                <input class="form-control" id="quantity"  ng-model="itemquantity" input type="text" required placeholder="Enter Quantity">
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+        <!--Description-->
+
+        <div class="control-label col-sm-3"></div>
+        <div class="form-group has-success has-feedback">
+            <label for="itemdescription" class="control-label" style="padding-right:45px">Description</label>
+            <textarea class="form-control" rows="4" id="itemdescription"  ng-model="itemdescription" placeholder="Enter Description" style="width: 270px"></textarea>
+
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+
+
+
+
+
+
+        <!--Date-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="itemdate" class="control-label" style="padding-right:90px">Date</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                <input class="form-control" id="itemdate" ng-model="itemdate" type="text"placeholder="Enter Date">
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+        <!--subit button-->
+
+        <div class="col-md-06 center-block">
+            <div class="col-xs-0">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="supplierclear" class="btn btn-primary">Clear</button>
+            <button type="suppliercancel" class="btn btn-primary">Cancel</button>
+        </div>
+
+
+        </br>
+        </br>
+
+        <div class="alert-danger" ng-repeat="msg in msgs"> {{ msg}}
+
+        </div>
+
+
+
+
+
+  </form>
+    </section>

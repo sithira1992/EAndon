@@ -1,0 +1,269 @@
+<section>
+
+    <!--header -->
+    <div class="control-header col-sm-11">
+        <h1 align="center" ng-init="get_staff()">Update Staff </h1>
+    </div>
+
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
+
+        <p class="btn-group">
+            <button class="btn btn-default">View</button>
+            <button class="btn btn-default">Update</button>
+            <button class="btn btn-default">Delete</button>
+        </p>
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2>Staff Registration</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>FullName</th>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>NIC</th>
+                        <th>phone</th>
+                        <th>jobPosition</th>
+                        <th>email</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="detail in details">
+                        <td>{{detail.fullName}}</td>
+                        <td class="center">{{detail.address}}</td>
+                        <td class="center">{{detail.gender}}</td>
+                        <td class="center">{{detail.nic}}</td>
+                        <td class="center">{{detail.phone}}</td>
+                        <td class="center">{{detail.jobPosition}}</td>
+                        <td class="center">{{detail.email}}</td>
+                        <td class="center">
+                            <span class="label-success label label-default">Active</span>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        </br>
+        </br>
+        </br>
+        </br> </br>
+        </br>
+        </br>
+        </br> </br>
+        </br>
+        </br>
+
+
+
+
+
+
+
+
+
+          <!--Name-->
+    </div>
+    <form class="form-inline" role="form" ng-submit="submit()">
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+
+
+            <label for="fullname" class="control-label" style="padding-right:40px">Full Name</label>
+
+
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class=" glyphicon glyphicon-user red"></i></span>
+                <input class="form-control" id="fullname" name="name" ng-model="name" type="text"placeholder="Name With Initial"  required="" value="<?php echo $firstname; ?>">
+
+
+
+            </div>
+        </div>
+
+
+        <!--/form-->
+
+        </br>
+        </br>
+        </br>
+
+        <!--address-->
+        <!--form class="form-inline" role="form"-->
+        <div class="control-label col-sm-3"></div>
+        <div class="form-group has-success has-feedback">
+            <label for="address" class="control-label" style="padding-right:50px">Address</label>
+            <textarea class="form-control" rows="4" ng-model="address" id="address"placeholder="Address" style="width: 270px"></textarea>
+        </div>
+
+        </br>
+        </br>
+        </br>
+
+
+        <!--Gender-->
+        <!--form class="form-inline" role="form"-->
+        <div class="control-label col-sm-3"></div>
+        <div class="form-group has-success has-feedback">
+            <label class="control-label" style="padding-right:60px">Gender</label>
+            <div class="radio">
+                <label>
+                    <input name="sex" id="male" value="male" checked="" type="radio" ng-model="gender">
+                    Male
+                    <label>
+                        <input name="sex" id="female" value="female"  type="radio" ng-model="gender">
+                        Female
+                    </label>
+                </label>
+            </div>
+        </div>
+        <!--/form-->
+        </br>
+        </br>
+        </br>
+
+
+        <!-- NIC Number-->
+        <!--form class="form-inline" role="form"-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="nic" class="control-label" style="padding-right:90px">NIC</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-bookmark red"></i></span>
+                <input class="form-control" id="nic" ng-model="nic"  type="text" placeholder="NIC Number" pattern="[0-9{{9}V}">
+            </div>
+
+        </div>
+
+
+        <!--/form-->
+
+        </br>
+        </br>
+        </br>
+
+
+        <!--Phone Number-->
+        <!--form class="form-inline" role="form"-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="phone" class="control-label" style="padding-right:70px">Phone</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="  glyphicon glyphicon-phone-alt red"></i></span>
+                <input class="form-control" id="phone" ng-model="phone" type="text"placeholder="Phone Number " pattern="[0-9]{1}[0-9]{9}" required="">
+            </div>
+            <!--/form!-->
+
+            </br>
+            </br>
+            </br>
+
+            <!--position-->
+            <!--form class="form-inline" role="form"-->
+            <div class="control-label col-sm-3">
+                <div class="col-xs-4">
+                </div>
+            </div>
+            <div class="form-group has-success has-feedback">
+                <label class="control-label" style="padding-right:60px">Position</label>
+                <select class="form-control" style="width:270px" ng-model="position">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+
+        </div>
+        <!--/form-->
+        </br>
+        </br>
+        </br>
+
+        <!--Email-->
+        <!--form class="form-inline" role="form"-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label  class="control-label" style="padding-right:80px">Email</label>
+
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope red"></i></span>
+                <input id="inputIcon" ng-model="email" type="text" class="form-control" placeholder="Enter Email Address"  required="true">
+            </div>
+
+
+        </div>
+        <!--/form-->
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+
+        <!--subit button-->
+        <!--form class="form-inline" role="form"-->
+        <div class="col-md-6 center-block">
+            <div class="col-xs-4">
+            </div>
+            <button type="submit"  class="btn btn-primary">Submit</button>
+            <button type="clear" class="btn btn-primary">Clear</button>
+            <button type="cancel" class="btn btn-primary">Cancel</button>
+        </div>
+
+        <li class="alert-danger" ng-repeat="msg in msgs"> {{ msg}} </li>
+    </form>
+
+    </br>
+    </br>
+    </br>
+    </br>
+
+
+</section>
+
+</body>
+
+
+
+
+

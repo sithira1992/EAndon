@@ -1,0 +1,55 @@
+<!--header -->
+<div class="control-header col-sm-11">
+    <h1 align="center"ng-init="get_site()">Site Details </h1>
+</div>
+
+</br>
+</br>
+</br>
+</br>
+
+
+<div class="box-inner">
+    <div class="box-header well" data-original-title="">
+        <h2>Supplier Details</h2>
+
+        <div class="box-icon">
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+    </div>
+    <div class="box-content">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>FullName</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Supplier Iteam</th>
+                <th>Unit Price</th>
+                <th>Statues</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="detail in details">
+                <td>{{detail.fullname}}</td>
+                <td class="center">{{detail.address}}</td>
+                <td class="center">{{detail.phone}}</td>
+                <td class="center">{{detail.email}}</td>
+                <td class="center">{{detail.supitem}}</td>
+                <td class="center">{{detail.unitprice}}</td>
+                <td class="center">{{detail.statues}}</td>
+
+                <td class="center">
+                    <span class="label-success label label-default">Active</span>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,173 @@
+<section>
+
+    <!--header -->
+    <div class="control-header col-sm-11">
+        <h1 align="center">Site Registration  </h1>
+
+
+
+    </div>
+
+    </br>
+    </br>
+    </br>
+    </br>
+
+
+    <form class="form-inline" role="form" ng-submit="submit()">
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+
+
+        </br>
+        </br>
+        </br>
+        <!--Site Location-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+
+        <div class="form-group has-success has-feedback">
+            <label for="rgAddress" class="control-label" style="padding-right:50px">Address</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker red"></i></span>
+                <input class="form-control" id="rgAddress" ng-model="rgAddress" type="text"placeholder="Enter Site Address"value=""  required="">
+                <div class="row">
+                    <div class="col-xs-5">
+                    </div>
+                </div>
+
+                     </div>
+        </div>
+
+
+
+
+    </br>
+    </br>
+        </br>
+        </br>
+
+<!--Site Manager Name-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="rgmanager" class="control-label" style="padding-right:50px">Manager</label>
+            <div class="input-group input-group-md">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                <input class="form-control" id="rgmanager" ng-model="rgmanagername" type="text"placeholder="Enter Manager Name">
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+        <!--Site Start Date-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-1">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="rgstartdate" class="control-label" style="padding-right:50px">Start Date</label>
+            <div class="input-group input-group-md">
+                <input type="date" name="doj" id="rgstartdate" ng-model="rgstartdate" width="100px" >
+
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+        <!--Site Plan Date-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-1">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="rgplandate" class="control-label" style="padding-right:50px">Plan Date</label>
+            <div class="input-group input-group-md">
+                <input type="date" name="doj" id="rgplandate" ng-model="rgplandate" width="100px" >
+
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+        <!--Site Actual Date-->
+        <div class="control-label col-sm-3">
+            <div class="col-xs-1">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="date" class="control-label" style="padding-right:40px">Actual Date</label>
+            <div class="input-group input-group-md">
+                <input type="date" name="doj" id="date" ng-model="rgpactualdate" width="100px" >
+
+            </div>
+        </div>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+        <!--Statues-->
+
+        <div class="control-label col-sm-3">
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label for="rgstatues" class="control-label" style="padding-right:60px">Statues</label>
+            <textarea class="form-control" rows="4" id="rgstatues" ng-model="rgstatues"  placeholder="Enter Statues" style="width: 270px"></textarea>
+        </div>
+
+
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+
+
+        <!--subit button-->
+        <!--form class="form-inline" role="form"-->
+        <div class="col-md-02 center-block">
+            <div class="col-xs-0">
+            <button type="submit"  class="btn btn-primary">Submit</button>
+            <button type="clear" class="btn btn-primary">Clear</button>
+            <button type="cancel" class="btn btn-primary">Cancel</button>
+        </div>
+            </div>
+
+        </br>
+        </br>
+
+        <div class="alert-danger" ng-repeat="msg in msgs"> {{ msg}}
+
+        </div>
+
+
+    </br>
+    </br>
+    </br>
+    </br>
+            </form>
+</section>
+
+
+

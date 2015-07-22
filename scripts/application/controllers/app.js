@@ -43,7 +43,7 @@
                 name: "Site",
                 url: '/Site',
                 templateUrl: './views/SiteRegistration.html',
-                controller: 'itemCtrl'
+                controller: 'siteCtrl'
             };
             $stateProvider.state(site);
 

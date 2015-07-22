@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-1"></div>
+<div class="col-md-10">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h1>Staff Registeration</h1>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+
+            <form class="form-horizontal" role="form" ng-submit="submit()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-2 control-label">Full Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="fullname" name="name" ng-model="name" type="text"placeholder="Name With Initial" value=""  required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label" >Address</label>
+
+                    <div class="col-sm-10">
+
+                        <textarea placeholder="Enter ..." rows="3" ng-model="address" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Gender</label>
+                    <div class="col-sm-10">
+                        <div class="radio">
+                            <label>
+                                <input name="sex" id="male" value="male" checked="" type="radio" ng-model="gender">
+                                Male
+                                <label>
+                                    <input name="sex" id="female" value="female"  type="radio" ng-model="gender">
+                                    Female
+                                </label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nic" class="col-sm-2 control-label">NIC</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="nic" ng-model="nic"  type="text" placeholder="NIC Number" pattern="[0-9{{9}V}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-2 control-label">Phone</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="phone" ng-model="phone" type="text"placeholder="Phone Number " pattern="[0-9]{1}[0-9]{9}" required="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-2 control-label">Position</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" style="width:270px" ng-model="position">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input id="inputIcon" ng-model="email" type="text" class="form-control" placeholder="Enter Email Address"  required="true">
+                    </div>
+                </div>
+
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-info pull-right">Submit</button>
+            </div><!-- /.box-footer -->
+        </form>
+        <li class="alert-danger" ng-repeat="msg in msgs"> {{ msg}} </li>
+    </div>
+    </div>
+</div>

@@ -18,5 +18,23 @@
             // Start the timer
             $timeout(tick, $scope.tickInterval);
 
-        }]);
+        }
+
+
+    ])
+
+
+
+
+    .controller('refresh_control',function($scope,$interval){
+        var c=0;
+        $scope.message="This DIV is refreshed "+c+" time.";
+        var timer=$interval(function(){
+            $scope.message="This DIV is refreshed "+c+" time.";
+            c++;
+
+        },1000);
+
+
+    });
 })(angular);

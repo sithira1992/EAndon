@@ -27,6 +27,10 @@ switch($_GET['action'])  {
         delete_product();
         break;
 
+    case ' get_sites' :
+        get_sites();
+        break;
+
     case 'update_product' :
         update_product();
         break;
@@ -106,6 +110,32 @@ function get_site()
         $data[] = array(
             "id"            => $rows['SiteID'],
             "address"     => $rows['SiteAddress'],
+
+        );
+    }
+    print_r(json_encode($data));
+    return json_encode($data);
+}
+
+
+function get_sites()
+{
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+    $qry = mysql_query('SELECT * from siteregistration');
+
+    $data = array();
+    while($rows = mysql_fetch_array($qry))
+    {
+        $data[] = array(
+            "SiteAddress"     => $rows['SiteAddress'],
+            "SiteManagerName"=> $rows['SiteManagerName'],
+            "StartDate"      => $rows['StartDate'],
+            "PlanDate"      => $rows['PlanDate'],
+            "ActualDate"    => $rows['ActualDate'],
+            "Status"        => $rows['Status'],
 
         );
     }

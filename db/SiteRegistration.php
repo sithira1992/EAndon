@@ -15,9 +15,6 @@ switch($_GET['action'])  {
         get_location();
         break;
 
-    case 'edit_product' :
-        edit_product();
-        break;
 
     case 'get_site' :
         get_site();
@@ -27,8 +24,8 @@ switch($_GET['action'])  {
         delete_product();
         break;
 
-    case ' get_sites' :
-        get_sites();
+    case ' get_sites_details' :
+        get_sites_details();
         break;
 
     case 'update_product' :
@@ -110,6 +107,11 @@ function get_site()
         $data[] = array(
             "id"            => $rows['SiteID'],
             "address"     => $rows['SiteAddress'],
+            "SiteManagerName"=> $rows['SiteManagerName'],
+            "StartDate"      => $rows['StartDate'],
+            "PlanDate"      => $rows['PlanDate'],
+            "ActualDate"    => $rows['ActualDate'],
+            "Status"        => $rows['Status']
 
         );
     }
@@ -118,7 +120,7 @@ function get_site()
 }
 
 
-function get_sites()
+function get_sites_details()
 {
 
     $con = mysql_connect('localhost', 'root', '');
@@ -130,12 +132,13 @@ function get_sites()
     while($rows = mysql_fetch_array($qry))
     {
         $data[] = array(
+            "SiteID" =>$rows['SiteID'],
             "SiteAddress"     => $rows['SiteAddress'],
             "SiteManagerName"=> $rows['SiteManagerName'],
             "StartDate"      => $rows['StartDate'],
             "PlanDate"      => $rows['PlanDate'],
             "ActualDate"    => $rows['ActualDate'],
-            "Status"        => $rows['Status'],
+            "Status"        => $rows['Status']
 
         );
     }

@@ -55,6 +55,14 @@
             };
             $stateProvider.state(site);
 
+            var updateSite = {
+                name: "updateSite",
+                url: '/updateSite',
+                templateUrl: './views/updateSiteDetails.html',
+                controller: 'siteCtrl'
+            };
+            $stateProvider.state(updateSite);
+
 
         }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location',
         function($rootScope, $state, $stateParams, ajaxService, $location) {

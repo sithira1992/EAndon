@@ -15,21 +15,25 @@
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tbody><tr>
-                        <th>SiteAddress</th>
-                        <th>SiteManagerName</th>
-                        <th>StartDate</th>
-                        <th>PlanDate</th>
-                        <th>ActualDate</th>
+                        <th>Site Address</th>
+                        <th>Site Manager Name</th>
+                        <th>Start Date</th>
+                        <th>Plan Date</th>
+                        <th>Actual Date</th>
                         <th>Status</th>
 
                     </tr>
-                    <tr ng-repeat="detail in details">
-                        <td>{{detail.SiteAddress}}</td>
-                        <td class="center">{{detail.SiteManagerName}}</td>
-                        <td class="center">{{detail.StartDate}}</td>
-                        <td class="center">{{detail.PlanDate}}</td>
-                        <td class="center">{{detail.ActualDate}}</td>
-                        <td class="center">{{detail.Status}}</td>
+                    <tr ng-repeat="siteDetail in siteDetails">
+                        <td>
+                            <textarea  required="" rows="3" ng-model="siteDetail.address" class="form-control"></textarea>
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="siteDetail.SiteManagerName" type="text"placeholder="Enter Manager" value=""  required="" >
+                        </td>
+                        <td class="center">{{siteDetail.StartDate}}</td>
+                        <td class="center">{{siteDetail.PlanDate}}</td>
+                        <td class="center">{{siteDetail.ActualDate}}</td>
+                        <td class="center">{{siteDetail.Status}}</td>
                         <td class="center">
                             <button class="btn btn-block btn-success">Edit</button>
                             <button class="btn btn-block btn-danger">Delete</button>
@@ -74,7 +78,7 @@
                         <div class="form-group">
                             <label  class="col-sm-2 control-label">Address</label>
                             <div class="col-sm-10">
-                                <textarea placeholder="Enter Site Address"value=""  required="" rows="3" ng-model="rgAddress" class="form-control"></textarea>
+
                             </div>
                         </div>
                         </br>

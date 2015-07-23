@@ -45,7 +45,7 @@
                     $http.get('db/SiteRegistration.php?action=get_site').success(function(data)
                     {
                         //$scope.product_detail = data;
-                        $scope.details = data;
+                        $scope.siteDetails = data;
 
                     });
                 }

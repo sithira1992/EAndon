@@ -11,8 +11,8 @@ switch($_GET['action'])  {
         add_item();
         break;
 
-    case 'get_product' :
-        get_product();
+    case 'get_items' :
+        get_items();
         break;
 
     case 'edit_product' :
@@ -66,6 +66,37 @@ function add_item()
         $arr = array('msg' => "", 'error' => 'User Already exists with same nic');
         $jsn = json_encode($arr);
         print_r($jsn);
+    }
+}
+
+
+
+function get_items()
+{
+    {
+
+        $con = mysql_connect('localhost', 'root', '');
+        mysql_select_db('ranweli', $con);
+
+        $qry = mysql_query('SELECT * from itemregistration');
+
+        $data = array();
+        while($rows = mysql_fetch_array($qry))
+        {
+            $data[] = array(
+                "item_name"        => $rows['item_name'],
+                "unit_price"         => $rows['unit_price'],
+                "unit"          => $rows['unit'],
+                "quantity"             => $rows['quantity'],
+                "discripton"     => $rows['discripton'],
+
+
+
+            );
+        }
+        print_r(json_encode($data));
+        return json_encode($data);
+
     }
 }
 ?>

@@ -28,8 +28,8 @@ switch($_GET['action'])  {
         get_sites_details();
         break;
 
-    case 'update_product' :
-        update_product();
+    case 'update_site' :
+        update_site();
         break;
 }
 
@@ -44,6 +44,7 @@ function add_site()
     $rgplandate = mysql_real_escape_string($data->rgplandate);
     $rgpactualdate = mysql_real_escape_string($data->rgpactualdate);
     $rgstatues = mysql_real_escape_string($data->rgstatues);
+    $s=1;
 //$upswd = mysql_real_escape_string($data->pswd);
 //$uemail = mysql_real_escape_string($data->email);
 
@@ -55,7 +56,7 @@ function add_site()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO siteregistration (SiteAddress,SiteManagerName,StartDate,PlanDate,ActualDate,Status) values ("' . $rgAddress . '","' . $rgmanagername . '","' . $rgstartdate . '","' . $rgplandate . '","' . $rgpactualdate . '","' . $rgstatues .'")';
+        $qry = 'INSERT INTO siteregistration (SiteAddress,SiteManagerName,StartDate,PlanDate,ActualDate,Status,StatusOf) values ("' . $rgAddress . '","' . $rgmanagername . '","' . $rgstartdate . '","' . $rgplandate . '","' . $rgpactualdate . '","' . $rgstatues .'","'.$s.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -144,5 +145,29 @@ function get_sites_details()
     }
     print_r(json_encode($data));
     return json_encode($data);
+}
+
+
+
+//Update Funtion
+
+function update_site()
+{
+    $data = json_decode(file_get_contents("php://input"));
+    $address = mysql_real_escape_string($data->siteDetail.address);
+    $SiteManagerName = mysql_real_escape_string($data->siteDetail.SiteManagerName);
+    $StartDate = mysql_real_escape_string($data->siteDetail.StartDate);
+    $PlanDate = mysql_real_escape_string($data->siteDetail.PlanDate);
+    $ActualDate = mysql_real_escape_string($data->siteDetail.ActualDate);
+    $Status = mysql_real_escape_string($data->siteDetail.Status);
+
+//$upswd = mysql_real_escape_string($data->pswd);
+//$uemail = mysql_real_escape_string($data->email);
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+    UPDATE; siteregistration;
+
 }
 ?>

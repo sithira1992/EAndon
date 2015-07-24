@@ -1,4 +1,4 @@
-
+<form class="form-horizontal" role="form" ng-submit="update()">
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -24,16 +24,34 @@
                         <th>Unit Price</th>
                         <th>Statues</th>
                     </tr>
-                    <tr ng-repeat="detail in details">
-                        <td>{{detail.fullname}}</td>
-                        <td class="center">{{detail.address}}</td>
-                        <td class="center">{{detail.phone}}</td>
-                        <td class="center">{{detail.email}}</td>
-                        <td class="center">{{detail.supitem}}</td>
-                        <td class="center">{{detail.unitprice}}</td>
-                        <td class="center">{{detail.statues}}</td>
+                    <tr ng-repeat="supplierDetail in supplierDetails">
+                        <td>
+                            <input class="form-control"  name="name" ng-model="supplierDetail.fullname" type="text" >
+                        </td>
                         <td class="center">
-                            <button class="btn btn-block btn-success">Edit</button>
+                            <input class="form-control"  name="name" ng-model="supplierDetail.address" type="text" >
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="supplierDetail.phone" type="text" >
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="supplierDetail.email" type="text" >
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="supplierDetail.supitem" type="text" >
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="supplierDetail.unitprice" type="text" >
+                        </td>
+                        <td class="center">
+                            <input class="form-control"  name="name" ng-model="supplierDetail.statues" type="text" >
+                        </td>
+
+
+
+
+                        <td class="center">
+                            <button type="update" class="btn btn-block btn-success">Update</button>
                             <button class="btn btn-block btn-danger">Delete</button>
                         </td>
                     </tr>
@@ -45,116 +63,7 @@
         </div><!-- /.box -->
     </div>
 </div>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        </br>
-        </br>
-        <!-- Horizontal Form -->
-        <div class="box box-info">
-            <div class="bg-aqua color-palette">
-                <div class="box-header with-border">
-                    <h1 align="center"><i><b>Update Suppler Details</b></i></h1>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-
-                <form class="form-horizontal" role="form" ng-submit="submit()">
-                    <div class="box-body">
-                        <div class="form-group">
-
-                            <!--Supplier Name-->
-                            <label for="suppliername" class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="suppliername" name="name" ng-model="suppliername" type="text"placeholder="Enter Name" value=""  required="" >
-
-                            </div>
-                        </div>
-                        </br>
 
 
 
-                        <!--Supplier Address-->
-
-                        <div class="form-group">
-                            <label  class="col-sm-2 control-label" >Address</label>
-
-                            <div class="col-sm-10">
-
-                                <textarea placeholder="Enter Address" rows="3" ng-model="supplieraddress" class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                        </br>
-
-
-                        <!--Phone number-->
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Phone</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="phone" ng-model="supplierphone" style="width: 150px" type="text"placeholder="Phone Number " pattern="[0-9]{1}[0-9]{9}" required="">
-                            </div>
-                        </div>
-
-                        </br>
-
-                        <!--Email-->
-                        <div class="form-group">
-                            <label  class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input id="inputIcon" ng-model="supplieremail" type="text" class="form-control" placeholder="Enter Email Address"  required="true">
-                            </div>
-                        </div>
-
-                        </br>
-
-                        <!--Supplier Supply Item-->
-                        <div class="form-group">
-                            <label for="supplieritem" class="col-sm-2 control-label">Supply Item</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="supplieritem" name="name" ng-model="supplieritem" type="text"placeholder="Enter Item" value=""  required="" >
-
-                            </div>
-                        </div>
-                        </br>
-
-                        <!--Unit Price-->
-                        <div class="form-group">
-                            <label for="supplierunitprice" class="col-sm-2 control-label">Unit Price</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="supplierunitprice" name="name" ng-model="supplierunitprice" type="text"placeholder="Enter Price" value=""  required="" >
-
-                            </div>
-                        </div>
-                        </br>
-
-
-                        <!--Supplier Status-->
-
-                        <div class="form-group">
-                            <label  class="col-sm-2 control-label" >Status</label>
-
-                            <div class="col-sm-10">
-
-                                <textarea placeholder="Enter Status" rows="3" ng-model="supplierstatues" class="form-control"></textarea>
-                            </div>
-                        </div>
-                        </br>
-                        </br>
-
-                    </div><!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-info pull-right">Submit</button>
-                    </div><!-- /.box-footer -->
-                </form>
-                <li class="alert-danger" ng-repeat="msg in msgs"> {{ msg}} </li>
-            </div>
-        </div>
-    </div></div>
-
-</br>
-</br>
-
-
-
+</form>

@@ -47,6 +47,29 @@
                         //$scope.product_detail = data;
                         $scope.siteDetails = data;
 
+
+                    });
+                }
+                $scope.update= function () {    //update button
+
+                    $scope.msgs = [];
+                    $http.post('db/SiteRegistration.php?action=update_site',{'siteDetail.address':$scope.siteDetail.address,'siteDetail.SiteManagerName':$scope.siteDetail.SiteManagerName,'siteDetail.StartDate':$scope.siteDetail.StartDate,
+                        'siteDetail.PlanDate':$scope.siteDetail.PlanDate,'siteDetail.ActualDate':$scope.siteDetail.ActualDate,'siteDetail.Status':$scope.siteDetail.Status}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            msgs="**Site Register Successfully**"
+                            $scope.msgs.push(msgs);
+                            $scope.siteDetails = data;
+                        }
+                        else
+                        {
+                            msgs="Not Site Register"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
                     });
                 }
 

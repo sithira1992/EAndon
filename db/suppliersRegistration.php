@@ -23,8 +23,8 @@ switch($_GET['action'])  {
         delete_product();
         break;
 
-    case 'update_product' :
-        update_product();
+    case 'update_supplier' :
+        update_supplier();
         break;
 }
 
@@ -39,6 +39,7 @@ function add_supplier()
     $supplieritem = mysql_real_escape_string($data->supplieritem);
     $supplierunitprice = mysql_real_escape_string($data->supplierunitprice);
     $supplierstatues = mysql_real_escape_string($data->supplierstatues);
+    $s=1;
 
 //$upswd = mysql_real_escape_string($data->pswd);
 //$uemail = mysql_real_escape_string($data->email);
@@ -52,7 +53,7 @@ function add_supplier()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['ant'] == 0) {
-        $qry = 'INSERT INTO registersupplier (fullname,address,phone,email,supitem,unitprice,statues) values ("' . $suppliername . '","' . $supplieraddress . '","' . $supplierphone . '","' . $supplieremail . '","' . $supplieritem . '","' . $supplierunitprice . '","' . $supplierstatues . '")';
+        $qry = 'INSERT INTO registersupplier (fullname,address,phone,email,supitem,unitprice,statues,ss) values ("' . $suppliername . '","' . $supplieraddress . '","' . $supplierphone . '","' . $supplieremail . '","' . $supplieritem . '","' . $supplierunitprice . '","' . $supplierstatues . '","'.$s.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -117,5 +118,34 @@ function get_suppliers()
     }
     print_r(json_encode($data));
     return json_encode($data);
+}
+
+
+
+
+
+function update_supplier()
+{
+    $data = json_decode(file_get_contents("php://input"));
+    $suppliername = mysql_real_escape_string($data->supplierDetail.fullname);
+    $supplieraddress = mysql_real_escape_string($data->supplierDetail.address);
+    $supplierphone = mysql_real_escape_string($data->supplierDetail.phone);
+    $supplieremail = mysql_real_escape_string($data->supplierDetail.email);
+    $supplieritem = mysql_real_escape_string($data->supplierDetail.supitem);
+    $supplierunitprice = mysql_real_escape_string($data->supplierDetail.unitprice);
+    $supplierstatues = mysql_real_escape_string($data->supplierDetail.statues);
+
+//$upswd = mysql_real_escape_string($data->pswd);
+//$uemail = mysql_real_escape_string($data->email);
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+    $qry_em = 'select count(*) as ant from registersupplier where phone ="' . $supplierphone . '"';
+    $qry_res = mysql_query($qry_em);
+    $res = mysql_fetch_assoc($qry_res);
+
+
 }
 ?>

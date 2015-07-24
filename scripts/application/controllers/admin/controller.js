@@ -12,7 +12,7 @@
             $scope.get_staff = function () {
                 $http.get('db/staffRegistration.php?action=get_staff').success(function (data) {
                     //$scope.product_detail = data;
-                    $scope.pagedItems = data;
+                    $scope.StaffDetails = data;
 
                 });
             }
@@ -45,6 +45,31 @@
                     $scope.notify('error');
                 });
             }
+
+
+
+                $scope.update= function () {    //update button
+
+                    $scope.msgs = [];
+                    $http.post('db/staffRegistration.php?action=update_staff',{'StaffDetail.fullname':$scope.StaffDetail.fullname,'StaffDetail.address':$scope.StaffDetail.address,'StaffDetail.gender':$scope.StaffDetail.gender,
+                        'StaffDetail.nic':$scope.StaffDetail.nic,'StaffDetail.phone':$scope.StaffDetail.phone,'StaffDetail.jobPosition':$scope.StaffDetail.jobPosition,'StaffDetail.email':$scope.StaffDetail.email}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            msgs="**Updated Successfully**"
+                            $scope.msgs.push(msgs);
+                            $scope.siteDetails = data;
+                        }
+                        else
+                        {
+                            msgs="Not Update"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
+                    });
+                }
 
 
                 $scope.notify=function(style)

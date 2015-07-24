@@ -45,6 +45,7 @@ function add_staff()
     $phone = mysql_real_escape_string($data->phone);
     $position = mysql_real_escape_string($data->position);
     $email = mysql_real_escape_string($data->email);
+    $rr=1;
 //$upswd = mysql_real_escape_string($data->pswd);
 //$uemail = mysql_real_escape_string($data->email);
 
@@ -56,7 +57,7 @@ function add_staff()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO staffregistraion (fullName,address,gender,nic,phone,jobPosition,email) values ("' . $fullName . '","' . $address . '","' . $gender . '","' . $nic . '","' . $phone . '","' . $position . '","' . $email . '")';
+        $qry = 'INSERT INTO staffregistraion (fullName,address,gender,nic,phone,jobPosition,email,rr) values ("' . $fullName . '","' . $address . '","' . $gender . '","' . $nic . '","' . $phone . '","' . $position . '","' . $email . '","'.$rr.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');

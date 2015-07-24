@@ -63,6 +63,30 @@
             };
             $stateProvider.state(updateSite);
 
+            var updateSupplier = {
+                name: "updateSupplier",
+                url: '/updateSupplier',
+                templateUrl: './views/UpdateSupplierDetails.html',
+                controller: 'supplierCtrl'
+            };
+            $stateProvider.state(updateSupplier);
+
+            var updateRegistration = {
+                name: "updateRegistration",
+                url: '/updateRegistration',
+                templateUrl: './views/UpdateRegister.html',
+                controller: 'StaffCtrl'
+            };
+            $stateProvider.state(updateRegistration);
+
+            var UpdateItemDetails = {
+                name: "UpdateItemDetails",
+                url: '/UpdateItemDetails',
+                templateUrl: './views/UpdateItemDetails.html',
+                controller: 'itemCtrl'
+            };
+            $stateProvider.state(UpdateItemDetails);
+
 
         }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location',
         function($rootScope, $state, $stateParams, ajaxService, $location) {

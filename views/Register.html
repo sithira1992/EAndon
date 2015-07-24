@@ -3,11 +3,13 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+        </br>
+        </br>
         <!-- Horizontal Form -->
         <div class="box box-info">
 
             <div class="box-header with-border">
-                <h1>Staff Registeration</h1>
+                <h1><b><i>Staff Registeration</i></b></h1>
             </div><!-- /.box-header -->
             <!-- form start -->
 
@@ -63,11 +65,11 @@
                         <label for="fullname" class="col-sm-2 control-label">Position</label>
                         <div class="col-sm-10">
                             <select class="form-control" style="width:270px" ng-model="position">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="opel">Opel</option>
-                                <option value="audi">Audi</option>
-                            </select>
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="opel">Opel</option>
+                            <option value="audi">Audi</option>
+                        </select>
                         </div>
                     </div>
 
@@ -90,4 +92,13 @@
                 <li class="alert-danger" ng-repeat="msg in msgs"> {{ msg}} </li>
         </div>
     </div>
+</div>
+
+
+<div style="text-align: center">
+
+    <a class="btn btn-app"  href='#/updateRegistration'>
+        <i class="fa fa-edit" ></i> Edit
+    </a>
+
 </div>

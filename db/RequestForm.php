@@ -23,8 +23,8 @@ switch($_GET['action'])  {
         delete_product();
         break;
 
-    case 'update_product' :
-        update_product();
+    case 'update_staff' :
+        update_staff();
         break;
 }
 
@@ -93,6 +93,33 @@ where r.FK_Location=s.SiteID and r.FK_ManagerName=st.id');
     }
     print_r(json_encode($data));
     return json_encode($data);
+
+}
+
+
+
+function update_staff()
+{
+    $data = json_decode(file_get_contents("php://input"));
+    $suppliername = mysql_real_escape_string($data->StaffDetail.fullname);
+    $supplieraddress = mysql_real_escape_string($data->StaffDetail.address);
+    $supplierphone = mysql_real_escape_string($data->StaffDetail.gender);
+    $supplieremail = mysql_real_escape_string($data->StaffDetail.nic);
+    $supplieritem = mysql_real_escape_string($data->StaffDetail.phone);
+    $supplierunitprice = mysql_real_escape_string($data->StaffDetail.jobPosition);
+    $supplierstatues = mysql_real_escape_string($data->StaffDetail.emails);
+
+//$upswd = mysql_real_escape_string($data->pswd);
+//$uemail = mysql_real_escape_string($data->email);
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+    $qry_em = 'select count(*) as ant from registersupplier where phone ="' . $supplierphone . '"';
+    $qry_res = mysql_query($qry_em);
+    $res = mysql_fetch_assoc($qry_res);
+
 
 }
 ?>

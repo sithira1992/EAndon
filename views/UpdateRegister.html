@@ -19,13 +19,16 @@
                         <th>Address</th>
                         <th>Gender</th>
                         <th>NIC</th>
-                        <th>phone</th>
-                        <th>jobPositione</th>
-                        <th>email</th>
+                        <th>Phone</th>
+                        <th>Job Positione</th>
+                        <th>Email</th>
+                        <th>Register Date</th>
                     </tr>
                     <tr ng-repeat="StaffDetail in StaffDetails">
+
                         <td>
-                            <input class="form-control"  name="name" ng-model="StaffDetail.fullname" type="text" >
+                            <div ng-hide="StaffDetail.id"></div>
+                            <input class="form-control"  name="name" ng-model="StaffDetail.fullName" type="text" >
 
                         </td>
 
@@ -35,7 +38,12 @@
                         </td>
                         <td class="center">
 
-                            <input class="form-control"  name="name" ng-model=" StaffDetail.gender" type="text" >
+
+                            <select class="form-control" style="width:100px" ng-model="StaffDetail.gender">
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+
+                            </select>
 
                         </td>
                         <td class="center">
@@ -51,10 +59,10 @@
 
                         <td class="center">
                             <select class="form-control" style="width:100px" ng-model="StaffDetail.jobPosition">
-                                <option value="volvo">Admin</option>
-                                <option value="saab">QS</option>
-                                <option value="opel">Site Manager</option>
-                                <option value="audi">L</option>
+                                <option value="Admin">Admin</option>
+                                <option value="QS">QS</option>
+                                <option value="Site Manager">Site Manager</option>
+                                <option value="Other">Other</option>
                             </select>
                         </td>
 
@@ -64,11 +72,15 @@
 
                         </td>
 
+                        <td>
+                            {{StaffDetail.registerDate}}
 
 
+
+                        </td>
                         <td class="center">
-                            <button class="btn btn-block btn-success">Edit</button>
-                            <button class="btn btn-block btn-danger">Delete</button>
+                            <button class="btn btn-block btn-success" ng-click="update(StaffDetail)">Update</button>
+                            <button class="btn btn-block btn-danger"  ng-click="delete(StaffDetail)">Delete</button>
                         </td>
                     </tr>
 

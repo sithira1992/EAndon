@@ -19,12 +19,12 @@ switch($_GET['action'])  {
         edit_staff();
         break;
 
-    case 'delete_product' :
-        delete_product();
+    case 'delete_staff' :
+        delete_staff();
         break;
 
-    case 'update_product' :
-        update_product();
+    case 'update_staff' :
+        update_staff();
         break;
 
     case 'get_staff' :
@@ -45,9 +45,7 @@ function add_staff()
     $phone = mysql_real_escape_string($data->phone);
     $position = mysql_real_escape_string($data->position);
     $email = mysql_real_escape_string($data->email);
-    $rr=1;
-//$upswd = mysql_real_escape_string($data->pswd);
-//$uemail = mysql_real_escape_string($data->email);
+    $status=1;
 
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
@@ -57,7 +55,7 @@ function add_staff()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO staffregistraion (fullName,address,gender,nic,phone,jobPosition,email,rr) values ("' . $fullName . '","' . $address . '","' . $gender . '","' . $nic . '","' . $phone . '","' . $position . '","' . $email . '","'.$rr.'")';
+        $qry = 'INSERT INTO staffregistraion(fullName,address,gender,nic,phone,jobPosition,email,registerDate,status) values ("' . $fullName . '","' . $address . '","' . $gender . '","' . $nic . '","' . $phone . '","' . $position . '","' . $email . '","'.date("Y-m-d").'","'.$status.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -105,12 +103,13 @@ function get_staff()
         $con = mysql_connect('localhost', 'root', '');
         mysql_select_db('ranweli', $con);
 
-        $qry = mysql_query('SELECT * from staffregistraion');
+        $qry = mysql_query('SELECT * from staffregistraion where status=1 order by id desc');
 
         $data = array();
         while($rows = mysql_fetch_array($qry))
         {
             $data[] = array(
+                "id"            =>$rows['id'],
                 "fullName"        => $rows['fullName'],
                 "address"         => $rows['address'],
                 "gender"          => $rows['gender'],
@@ -118,6 +117,7 @@ function get_staff()
                 "jobPosition"     => $rows['jobPosition'],
                 "email"           => $rows['email'],
                 "phone"           => $rows['phone'],
+                "registerDate"    =>$rows['registerDate']
 
             );
         }
@@ -125,5 +125,74 @@ function get_staff()
         return json_encode($data);
 
     }
+}
+
+
+
+function update_staff()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+    $fullName = mysql_real_escape_string($data->name);
+    $address = mysql_real_escape_string($data->address);
+    $gender = mysql_real_escape_string($data->gender);
+    $nic = mysql_real_escape_string($data->nic);
+    $phone = mysql_real_escape_string($data->phone);
+    $jobPosition = mysql_real_escape_string($data->jobPosition );
+    $email = mysql_real_escape_string($data->email);
+
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+        $qry = 'UPDATE staffregistraion SET fullName="'.$fullName.'"  , address="'.$address.'", gender="'.$gender.'",
+                nic="'.$nic.'",jobPosition="'.$jobPosition.'",email="'.$email.'",phone="'.$phone.'"
+
+        WHERE id="'.$id.'"';
+        $qry_res = mysql_query($qry);
+        if ($qry_res) {
+            $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+            $jsn = json_encode($arr);
+            print_r($jsn);
+        } else {
+            $arr = array('msg' => "", 'error' => 'Error In inserting record');
+            $jsn = json_encode($arr);
+            print_r($jsn);
+        }
+
+}
+
+function delete_staff()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+
+    $status='0';
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+    $qry = 'UPDATE staffregistraion SET status="'.$status.'"
+
+        WHERE id="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
 }
 ?>

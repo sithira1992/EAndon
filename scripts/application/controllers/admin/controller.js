@@ -48,16 +48,20 @@
 
 
 
-                $scope.update= function () {    //update button
+                $scope.update= function (StaffDetail) {    //update button
+
 
                     $scope.msgs = [];
-                    $http.post('db/staffRegistration.php?action=update_staff',{'StaffDetail.fullname':$scope.StaffDetail.fullname,'StaffDetail.address':$scope.StaffDetail.address,'StaffDetail.gender':$scope.StaffDetail.gender,
-                        'StaffDetail.nic':$scope.StaffDetail.nic,'StaffDetail.phone':$scope.StaffDetail.phone,'StaffDetail.jobPosition':$scope.StaffDetail.jobPosition,'StaffDetail.email':$scope.StaffDetail.email}).success(function(data, status, headers, config) {
+                    $http.post('db/staffRegistration.php?action=update_staff',{'id':StaffDetail.id,'name':StaffDetail.fullName,'address':StaffDetail.address,'gender':StaffDetail.gender,
+                        'nic':StaffDetail.nic,'phone':StaffDetail.phone,'jobPosition':StaffDetail.jobPosition,'email':StaffDetail.email}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
-                            msgs="**Updated Successfully**"
+                            msgs="**Updated Successfully**";
+                            msgs="**Updated Successfully**";
+                            $scope.messege='Staff Member Updated Successfully';
+                            $scope.notify('success');
                             $scope.msgs.push(msgs);
-                            $scope.siteDetails = data;
+                            $scope.get_staff();
                         }
                         else
                         {
@@ -72,13 +76,36 @@
                 }
 
 
+                $scope.delete= function (StaffDetail) {    //update button
+
+                    $scope.msgs = [];
+                    $http.post('db/staffRegistration.php?action=delete_staff',{'id':StaffDetail.id}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            msgs="**Deleted Successfully**"
+                            $scope.msgs.push(msgs);
+                            $scope.get_staff();
+                            $scope.messege='Staff Member Deleted Successfully';
+                            $scope.notify('success');
+                        }
+                        else
+                        {
+                            msgs="Not Delete"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
+                    });
+                }
                 $scope.notify=function(style)
             {
 
                  $.notify({
              title: 'Submission Status',
              text: $scope.messege,
-             image: "<img src='./images/unsuccess.png'/>"
+             image: "<img src='./images/select.png'/>"
           }, {
                       style: 'metro',
                       className: style,

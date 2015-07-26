@@ -79,7 +79,7 @@ function get_manager()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from staffregistraion ');
+    $qry = mysql_query('SELECT * from staffregistraion where status=1 order by id desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))

@@ -15,8 +15,8 @@ switch($_GET['action'])  {
         get_OrderDetails();
         break;
 
-    case 'edit_product' :
-        edit_product();
+    case 'get_OrderDetails_request' :
+        get_OrderDetails_request();
         break;
 
     case 'delete_product' :
@@ -39,7 +39,7 @@ function add_request()
     $measure = mysql_real_escape_string($data->measure);
     $quantity = mysql_real_escape_string($data->quantity);
     $date = mysql_real_escape_string($data->date);
-   //$upswd = mysql_real_escape_string($data->pswd);
+   $to = mysql_real_escape_string($data->to);
 //$uemail = mysql_real_escape_string($data->email);
 
     $con = mysql_connect('localhost', 'root', '');
@@ -50,7 +50,7 @@ function add_request()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO requestform (FK_Location,FK_ManagerName,Item,Unit,Quantity,Date) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'")';
+        $qry = 'INSERT INTO requestform (FK_Location,FK_ManagerName,Item,Unit,Quantity,Date,FK_SendTo) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -122,4 +122,55 @@ function update_staff()
 
 
 }
+
+
+function get_OrderDetails_request()
+{
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+    $qry = mysql_query('Select
+  r.id,
+  st.fullName,
+  s.SiteAddress,
+  r.Item,
+  r.Unit,
+  r.Quantity,
+  r.Date,
+  r.SendToStatus,
+  r.FK_SendTo,
+  ranweli.staffregistraion.fullName As fullName1,
+  r.FK_ManagerName,
+  r.FK_Location
+From
+  ranweli.requestform r Inner Join
+  ranweli.staffregistraion On r.FK_SendTo = ranweli.staffregistraion.id,
+  ranweli.staffregistraion st,
+  ranweli.siteregistration s
+Where
+  r.FK_Location = s.SiteID And
+  r.FK_ManagerName = st.id And
+  r.SendToStatus = 1');
+
+    $data = array();
+    while($rows = mysql_fetch_array($qry))
+    {
+        $data[] = array(
+            "id"            => $rows['id'],
+            "fullname"     => $rows['fullName'],
+            "to"     => $rows['fullName1'],
+            "SiteAddress"     => $rows['SiteAddress'],
+            "Item"     => $rows['Item'],
+            "Unit"     => $rows['Unit'],
+            "Quantity"     => $rows['Quantity'],
+            "Date"     => $rows['Date'],
+        );
+    }
+    print_r(json_encode($data));
+    return json_encode($data);
+
+}
+
+
 ?>

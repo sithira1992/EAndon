@@ -16,6 +16,8 @@
 
                 <!--Location Name-->
                 <form class="form-horizontal" role="form" ng-submit="submit()">
+
+
                     <div class="box-body" ng-init="get_manager()">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Location</label>
@@ -40,11 +42,24 @@
                         </div>
 
                         </br>
+
+                        <div class="form-group">
+                            <label  class="col-sm-2 control-label" >Send To</label>
+
+                            <div class="col-sm-10">
+
+                                <select class="form-control" style="width:270px" ng-model="toId">
+                                    <option ng-repeat="manager in managers" value="{{manager.id}}">{{manager.full_name}}</option>                                </select>
+
+                            </div>
+                        </div>
+                        </br>
                         <!--Item Name-->
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Item Name</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="itemunite" style="width: 200px" ng-model="item"  type="text" required placeholder="Enter Item Name">
+                                <select class="form-control" style="width:270px" ng-model="item">
+                                    <option ng-repeat="ItemDetail in ItemDetails" value="{{ItemDetail.item_name}}">{{ItemDetail.item_name}}</option>                                </select>
                             </div>
                         </div>
                         </br>
@@ -74,7 +89,10 @@
                         <div class="form-group">
                             <label  class="col-sm-2 control-label">Date</label>
                             <div class="col-sm-10">
-                                <input style="width:270px"   type="date" name="doj" id="date" ng-model="date" width="100px" >                            </div>
+                            <input class="form-control" id="a"type="date" style="width: 200px" ng-model="date" type="text"placeholder="yyyy-mm-dd " required placeholder="Enter Date">
+
+
+                            </div>
                         </div>
                         </br>
 

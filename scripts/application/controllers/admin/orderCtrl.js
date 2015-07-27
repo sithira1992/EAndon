@@ -78,13 +78,19 @@
                 $scope.get_OrderDetails_request = function() {
                     $http.get('db/RequestForm.php?action=get_OrderDetails_request').success(function(data)
                     {
+
+                        alert('lollllll');
+                        alert(data.length);
                         //$scope.product_detail = data;
                         $scope.detailsa = data;
 
-                        $scope.messege='You Receive Order Request to Approve';
-                        $scope.notify('success');
+                            if(data.length>0) {
+                                $scope.messege = 'You Receive '+data.length+ ' Order Request to Approve';
+                                $scope.notify('success');
+                            }
 
-                    });
+                    }
+                    );
                 }
 
 

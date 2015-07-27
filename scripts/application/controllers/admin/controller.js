@@ -2,7 +2,7 @@
 
     angular.module('andonControllers')
 
-//Staff Registration Controller
+//Staff Registration Controller for all
         .controller("StaffCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
             function ($scope, $http,$routeParams,$filter,$location) {
 

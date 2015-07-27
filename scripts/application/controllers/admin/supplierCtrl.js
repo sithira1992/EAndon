@@ -45,28 +45,69 @@
 
 
 
-                $scope.update= function () {    //subite button
+                $scope.update= function (supplierDetail) {    //Update button
 
                     $scope.msgs = [];
-                    $http.post('db/suppliersRegistration.php?action=update_supplier',{'supplierDetail.fullname':$scope.supplierDetail.fullname,'supplierDetail.address':$scope.supplierDetail.address,'supplierDetail.phone':$scope.supplierDetail.phone,
-                        'supplierDetail.email':$scope.supplierDetail.email,'supplierDetail.supitem':$scope.supplierDetail.supitem,'supplierDetail.unitprice':$scope.supplierDetail.unitprice,'supplierDetail.statues':$scope.supplierDetail.statues}).success(function(data, status, headers, config) {
+                    $http.post('db/suppliersRegistration.php?action=update_supplier',{'id':supplierDetail.id,'name':supplierDetail.fullname,'address':supplierDetail.address,'phone':supplierDetail.phone,
+                        'email':supplierDetail.email,'supitem':supplierDetail.supitem,'unitprice':supplierDetail.unitprice,'statues':supplierDetail.statues}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
-                            msgs="**Suppler Updated Successfully**"
+                            msgs="**Updated Successfully**";
+                            msgs="**Updated Successfully**";
+                            $scope.messege='Supplier Updated Successfully';
                             $scope.notify('success');
                             $scope.msgs.push(msgs);
+                            $scope.get_suppliers();
 
                         }
                         else
                         {
-                            msgs="**Not Register**"
-                            $scope.notify('error');
+                            msgs="Not Update"
                             $scope.msgs.push(msgs);
                         }
                     }).error(function(data, status) { // called asynchronously if an error occurs
 // or server returns response with an error status.
                         $scope.msgs.push(status);
 
+                    });
+                }
+
+
+                $scope.delete= function (supplierDetail) {    //update button
+
+                    $scope.msgs = [];
+                    $http.post('db/suppliersRegistration.php?action=delete_supplier',{'id':supplierDetail.id}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            msgs="**Deleted Successfully**"
+                            $scope.msgs.push(msgs);
+                            $scope.get_suppliers();
+                            $scope.messege='Staff Member Deleted Successfully';
+                            $scope.notify('success');
+                        }
+                        else
+                        {
+                            msgs="Not Delete"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
+                    });
+                }
+                $scope.notify=function(style)
+                {
+
+                    $.notify({
+                        title: 'Submission Status',
+                        text: $scope.messege,
+                        image: "<img src='./images/select.png'/>"
+                    }, {
+                        style: 'metro',
+                        className: style,
+                        autoHide: true,
+                        clickToHide: true
                     });
                 }
 

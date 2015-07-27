@@ -19,8 +19,8 @@ switch($_GET['action'])  {
         get_suppliers();
         break;
 
-    case 'delete_product' :
-        delete_product();
+    case 'delete_supplier' :
+        delete_supplier();
         break;
 
     case 'update_supplier' :
@@ -124,28 +124,76 @@ function get_suppliers()
 
 
 
-function update_supplier()
+function  update_supplier()
 {
-    $data = json_decode(file_get_contents("php://input"));
-    $suppliername = mysql_real_escape_string($data->supplierDetail.fullname);
-    $supplieraddress = mysql_real_escape_string($data->supplierDetail.address);
-    $supplierphone = mysql_real_escape_string($data->supplierDetail.phone);
-    $supplieremail = mysql_real_escape_string($data->supplierDetail.email);
-    $supplieritem = mysql_real_escape_string($data->supplierDetail.supitem);
-    $supplierunitprice = mysql_real_escape_string($data->supplierDetail.unitprice);
-    $supplierstatues = mysql_real_escape_string($data->supplierDetail.statues);
 
-//$upswd = mysql_real_escape_string($data->pswd);
-//$uemail = mysql_real_escape_string($data->email);
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+    $fullName = mysql_real_escape_string($data->name);
+    $address = mysql_real_escape_string($data->address);
+    $phone = mysql_real_escape_string($data->phone);
+    $email = mysql_real_escape_string($data->email);
+    $supitem = mysql_real_escape_string($data->supitem);
+    $unitprice = mysql_real_escape_string($data->unitprice);
+    $statues = mysql_real_escape_string($data->statues );
+
+
 
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
 
-    $qry_em = 'select count(*) as ant from registersupplier where phone ="' . $supplierphone . '"';
-    $qry_res = mysql_query($qry_em);
-    $res = mysql_fetch_assoc($qry_res);
+
+
+    $qry = 'UPDATE registersupplier SET fullname="'.$fullName.'"  , address="'.$address.'", phone="'.$phone.'",
+                email="'.$email.'",supitem="'.$supitem.'",unitprice="'.$unitprice.'",statues="'.$statues.'"
+
+        WHERE id="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+
 
 
 }
+
+
+function delete_supplier()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+
+    $s='0';
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+    $qry = 'UPDATE registersupplier SET ss="'.$s.'"
+
+        WHERE id="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+}
+
 ?>

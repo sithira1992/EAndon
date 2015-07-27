@@ -53,20 +53,23 @@
 
 
 
-                $scope.update= function () {    //update button
+                $scope.update= function (siteDetail) {    //update button
 
                     $scope.msgs = [];
-                    $http.post('db/SiteRegistration.php?action=update_site',{'siteDetail.address':$scope.siteDetail.address,'siteDetail.SiteManagerName':$scope.siteDetail.SiteManagerName,'siteDetail.StartDate':$scope.siteDetail.StartDate,
-                        'siteDetail.PlanDate':$scope.siteDetail.PlanDate,'siteDetail.ActualDate':$scope.siteDetail.ActualDate,'siteDetail.Status':$scope.siteDetail.Status}).success(function(data, status, headers, config) {
+                    $http.post('db/siteregistration.php?action=update_site',{'SiteID':siteDetail.SiteID,'address':siteDetail.address,'SiteManagerName':siteDetail.SiteManagerName,'StartDate':siteDetail.StartDate,
+                        'PlanDate':siteDetail.PlanDate,'ActualDate':siteDetail.ActualDate,'Status':siteDetail.Status}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
-                            msgs="**Site Register Successfully**"
+                            msgs="**Updated Successfully**";
+                            msgs="**Updated Successfully**";
+                            $scope.messege='Site Updated Successfully';
+                            $scope.notify('success');
                             $scope.msgs.push(msgs);
-                            $scope.siteDetails = data;
+                            $scope.get_sites();
                         }
                         else
                         {
-                            msgs="Not Site Register"
+                            msgs="Not Update"
                             $scope.msgs.push(msgs);
                         }
                     }).error(function(data, status) { // called asynchronously if an error occurs
@@ -75,6 +78,47 @@
 
                     });
                 }
+
+                $scope.delete= function (siteDetail) {    //update button
+
+                    $scope.msgs = [];
+                    $http.post('db/siteregistration.php?action=delete_site',{'id':siteDetail.id}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+                            msgs="**Deleted Successfully**"
+                            $scope.msgs.push(msgs);
+                            $scope.get_sites();
+                            $scope.messege='Site Details Deleted Successfully';
+                            $scope.notify('success');
+                        }
+                        else
+                        {
+                            msgs="Not Delete"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
+                    });
+                }
+
+
+                $scope.notify=function(style)
+                {
+
+                    $.notify({
+                        title: 'Submission Status',
+                        text: $scope.messege,
+                        image: "<img src='./images/select.png'/>"
+                    }, {
+                        style: 'metro',
+                        className: style,
+                        autoHide: true,
+                        clickToHide: true
+                    });
+                }
+
 
 
 

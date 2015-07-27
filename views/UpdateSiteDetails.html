@@ -28,6 +28,7 @@
                     </tr>
                     <tr ng-repeat="siteDetail in siteDetails">
                         <td>
+                            <div ng-hide="siteDetail.SiteID"></div>
                             <textarea  required="" rows="3" ng-model="siteDetail.address" class="form-control"></textarea>
                         </td>
                         <td class="center">
@@ -45,13 +46,16 @@
                         <td class="center">
                             <input class="form-control"  name="name" ng-model="siteDetail.Status" type="text" >
                         </td>
+                        <td>
+                            {{siteDetail.registerDate}}
+                        </td>
 
 
 
 
                         <td class="center">
-                            <button type="update" class="btn btn-block btn-success">Update</button>
-                            <button class="btn btn-block btn-danger">Delete</button>
+                            <button class="btn btn-block btn-success" ng-click="update(siteDetail)">Update</button>
+                            <button class="btn btn-block btn-danger"  ng-click="delete(siteDetail)">Delete</button>
                         </td>
                     </tr>
 

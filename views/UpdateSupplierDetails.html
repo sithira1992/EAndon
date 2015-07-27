@@ -26,6 +26,7 @@
                     </tr>
                     <tr ng-repeat="supplierDetail in supplierDetails">
                         <td>
+                            <div ng-hide="supplierDetail.id"></div>
                             <input class="form-control"  name="name" ng-model="supplierDetail.fullname" type="text" >
                         </td>
                         <td class="center">
@@ -47,12 +48,17 @@
                             <input class="form-control"  name="name" ng-model="supplierDetail.statues" type="text" >
                         </td>
 
+                        <td>
+                            {{supplierDetail.registerDate}}
 
+
+
+                        </td>
 
 
                         <td class="center">
-                            <button type="update" class="btn btn-block btn-success">Update</button>
-                            <button class="btn btn-block btn-danger">Delete</button>
+                            <button class="btn btn-block btn-success" ng-click="update(supplierDetail)">Update</button>
+                            <button class="btn btn-block btn-danger"  ng-click="delete(supplierDetail)">Delete</button>
                         </td>
                     </tr>
 

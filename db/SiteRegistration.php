@@ -20,8 +20,8 @@ switch($_GET['action'])  {
         get_site();
         break;
 
-    case 'delete_product' :
-        delete_product();
+    case 'delete_site' :
+        delete_site();
         break;
 
     case ' get_sites_details' :
@@ -151,23 +151,74 @@ function get_sites_details()
 
 //Update Funtion
 
-function update_site()
-{
-    $data = json_decode(file_get_contents("php://input"));
-    $address = mysql_real_escape_string($data->siteDetail.address);
-    $SiteManagerName = mysql_real_escape_string($data->siteDetail.SiteManagerName);
-    $StartDate = mysql_real_escape_string($data->siteDetail.StartDate);
-    $PlanDate = mysql_real_escape_string($data->siteDetail.PlanDate);
-    $ActualDate = mysql_real_escape_string($data->siteDetail.ActualDate);
-    $Status = mysql_real_escape_string($data->siteDetail.Status);
 
-//$upswd = mysql_real_escape_string($data->pswd);
-//$uemail = mysql_real_escape_string($data->email);
+function  update_site()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->SiteID);
+    $address = mysql_real_escape_string($data->address);
+    $SiteManagerName = mysql_real_escape_string($data->SiteManagerName);
+    $StartDate = mysql_real_escape_string($data->StartDate);
+    $PlanDate = mysql_real_escape_string($data->PlanDate);
+    $ActualDate = mysql_real_escape_string($data->ActualDate );
+    $Status = mysql_real_escape_string($data->Status);
+
+
+
 
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    UPDATE; siteregistration;
+
+
+
+    $qry = 'UPDATE siteregistration SET SiteAddress="'.$address.'", SiteManagerName="'.$SiteManagerName.'",
+                StartDate="'.$StartDate.'",PlanDate="'.$PlanDate.'",ActualDate="'.$ActualDate.'",Status="'.$Status.'"
+
+        WHERE SiteID="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
 
 }
+
+
+function delete_site()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->SiteID);
+
+    $s='0';
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+    $qry = 'UPDATE staffregistraion SET status="'.$s.'"
+
+        WHERE SiteID="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+}
+
 ?>

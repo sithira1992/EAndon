@@ -29,6 +29,8 @@
                         <tr ng-repeat="ItemDetail in ItemDetails">
 
                             <td class="center">
+
+                                <div ng-hide="ItemDetail.id"></div>
                                 <input class="form-control"  name="name" ng-model="ItemDetail.item_name" type="text" >
                             </td>
                             <td class="center">
@@ -51,8 +53,8 @@
 
 
                             <td class="center">
-                                <button type="update" class="btn btn-block btn-success">Update</button>
-                                <button class="btn btn-block btn-danger">Delete</button>
+                                <button class="btn btn-block btn-success" ng-click="update(ItemDetail)">Update</button>
+                                <button class="btn btn-block btn-danger"  ng-click="delete(ItemDetail)">Delete</button>
                             </td>
                         </tr>
 

@@ -76,7 +76,7 @@
                 }
 
 
-                $scope.delete= function (StaffDetail) {    //update button
+                $scope.delete= function (StaffDetail) {    //Delete button
 
                     $scope.msgs = [];
                     $http.post('db/staffRegistration.php?action=delete_staff',{'id':StaffDetail.id}).success(function(data, status, headers, config) {

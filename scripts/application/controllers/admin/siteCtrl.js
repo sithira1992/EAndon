@@ -56,7 +56,7 @@
                 $scope.update= function (siteDetail) {    //update button
 
                     $scope.msgs = [];
-                    $http.post('db/siteregistration.php?action=update_site',{'SiteID':siteDetail.SiteID,'address':siteDetail.address,'SiteManagerName':siteDetail.SiteManagerName,'StartDate':siteDetail.StartDate,
+                    $http.post('db/siteregistration.php?action=update_site',{'SiteID':siteDetail.id,'address':siteDetail.address,'SiteManagerName':siteDetail.SiteManagerName,'StartDate':siteDetail.StartDate,
                         'PlanDate':siteDetail.PlanDate,'ActualDate':siteDetail.ActualDate,'Status':siteDetail.Status}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {

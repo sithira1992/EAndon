@@ -38,8 +38,8 @@ function add_supplier()
     $supplieremail = mysql_real_escape_string($data->supplieremail);
     $supplieritem = mysql_real_escape_string($data->supplieritem);
     $supplierunitprice = mysql_real_escape_string($data->supplierunitprice);
-    $supplierstatues = mysql_real_escape_string($data->supplierstatues);
-    $s=1;
+
+    $supplierstatues=1;
 
 //$upswd = mysql_real_escape_string($data->pswd);
 //$uemail = mysql_real_escape_string($data->email);
@@ -53,7 +53,7 @@ function add_supplier()
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['ant'] == 0) {
-        $qry = 'INSERT INTO registersupplier (fullname,address,phone,email,supitem,unitprice,statues,ss) values ("' . $suppliername . '","' . $supplieraddress . '","' . $supplierphone . '","' . $supplieremail . '","' . $supplieritem . '","' . $supplierunitprice . '","' . $supplierstatues . '","'.$s.'")';
+        $qry = 'INSERT INTO registersupplier (fullname,address,phone,email,supitem,unitprice,statues) values ("' . $suppliername . '","' . $supplieraddress . '","' . $supplierphone . '","' . $supplieremail . '","' . $supplieritem . '","' . $supplierunitprice . '","' . $supplierstatues . '")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');

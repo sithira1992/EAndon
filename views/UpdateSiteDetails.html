@@ -28,7 +28,7 @@
                     </tr>
                     <tr ng-repeat="siteDetail in siteDetails">
                         <td>
-                            <div ng-hide="siteDetail.SiteID"></div>
+                            <div ng-hide="siteDetail.id"></div>
                             <textarea  required="" rows="3" ng-model="siteDetail.address" class="form-control"></textarea>
                         </td>
                         <td class="center">
@@ -44,7 +44,7 @@
                             <input type="date" name="doj"  ng-model="siteDetail.ActualDate" width="100px" >
                         </td>
                         <td class="center">
-                            <input class="form-control"  name="name" ng-model="siteDetail.Status" type="text" >
+                            <input class="form-control"  name="name" ng-model="siteDetail.id" type="text" >
                         </td>
                         <td>
                             {{siteDetail.registerDate}}

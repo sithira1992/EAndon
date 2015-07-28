@@ -4,7 +4,15 @@
     appRoot.config([
         '$routeProvider', '$locationProvider', '$stateProvider',
         function ($routeProvider, $locationProvider, $stateProvider) {
-           
+
+
+            var login = {
+                name: "login",
+                url: '/login',
+                templateUrl: './views/login.html',
+                controller: 'LoginController'
+            };
+            $stateProvider.state(login);
 	var dashboard = {
             name: "dashboard",
             url: '/dashboard',

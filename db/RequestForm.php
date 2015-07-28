@@ -76,7 +76,7 @@ function get_OrderDetails()
     mysql_select_db('ranweli', $con);
 
     $qry = mysql_query('SELECT r.id,st.fullname,s.SiteAddress,r.Item,r.Unit,r.Quantity,r.Date FROM ranweli.requestform r, ranweli.siteregistration s,ranweli.staffregistraion st
-where r.FK_Location=s.SiteID and r.FK_ManagerName=st.id');
+where r.FK_Location=s.SiteID and r.FK_Manager=st.id');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -126,47 +126,63 @@ function update_staff()
 
 function get_OrderDetails_request()
 {
-
+    $data = json_decode(file_get_contents("php://input"));
+    $id = mysql_real_escape_string($data->id);
+ // echo 'lol'.$id;
+  //  echo 'lol'.$id;
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
     $qry = mysql_query('Select
   r.id,
-  st.fullName,
+  r.FK_Manager,
+  st.fullName as Manager_Name,
+  r.FK_Location,
   s.SiteAddress,
   r.Item,
   r.Unit,
   r.Quantity,
   r.Date,
-  r.SendToStatus,
-  r.FK_SendTo,
-  ranweli.staffregistraion.fullName As fullName1,
-  r.FK_ManagerName,
-  r.FK_Location
+  r.Qs_Status,
+  r.FK_Qs,
+  ranweli.staffregistraion.fullName As Qs_Name
+
+
 From
   ranweli.requestform r Inner Join
-  ranweli.staffregistraion On r.FK_SendTo = ranweli.staffregistraion.id,
+  ranweli.staffregistraion On r.FK_Qs = ranweli.staffregistraion.id,
   ranweli.staffregistraion st,
   ranweli.siteregistration s
 Where
   r.FK_Location = s.SiteID And
-  r.FK_ManagerName = st.id And
-  r.SendToStatus = 1');
+  r.FK_Manager = st.id And
+  r.status = 1 and r.Qs_Status=1 And
+  r.Fk_Qs="'.$id.'"');
 
     $data = array();
-    while($rows = mysql_fetch_array($qry))
-    {
-        $data[] = array(
-            "id"            => $rows['id'],
-            "fullname"     => $rows['fullName'],
-            "to"     => $rows['fullName1'],
-            "SiteAddress"     => $rows['SiteAddress'],
-            "Item"     => $rows['Item'],
-            "Unit"     => $rows['Unit'],
-            "Quantity"     => $rows['Quantity'],
-            "Date"     => $rows['Date'],
-        );
+
+    if ($qry) {
+
+        while($rows = mysql_fetch_array($qry))
+        {
+            $data[] = array(
+                "id"            => $rows['id'],
+                "fullname"     => $rows['Manager_Name'],
+                "to"     => $rows['Qs_Name'],
+                "SiteAddress"     => $rows['SiteAddress'],
+                "Item"     => $rows['Item'],
+                "Unit"     => $rows['Unit'],
+                "Quantity"     => $rows['Quantity'],
+                "Date"     => $rows['Date'],
+            );
+        }
+
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
     }
+
     print_r(json_encode($data));
     return json_encode($data);
 

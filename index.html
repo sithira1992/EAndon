@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<div ng-app="refresh_div" ng-controller="refresh_control">
+<div ng-controller="refresh_control">
 
 </div>
 <html lang="en" ng-app="myApp"  >
   <head>
     <meta charset="UTF-8">
-    <title>Andon | Dashboard</title>
+    <title>Ranweli | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -49,8 +49,9 @@
   </head>
 
   <body class="skin-blue sidebar-mini" ng-controller="RootController">
+  <div id="lol">
     <div class="wrapper">
-      
+
       <header class="main-header">
         <!-- Logo -->
         <a href="#" class="logo">
@@ -262,7 +263,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="./images/aaaaaaaa.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Mahesh Udara</span>
+                  <span class="hidden-xs">Mahesh Udara  {{userId}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -457,7 +458,7 @@
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
 
-
+  </div>
     <!--Library Files-->
 
     <script  src="./scripts/lib/jQuery/jquery.soap.js"></script>
@@ -500,10 +501,13 @@
     <script  src="./scripts/application/controllers/admin/dashboard.js"></script>
     <script  src="./scripts/root.js"></script>
     <script src="./scripts/application/controllers/admin/refreshCtrl.js"></script>
+  <script src="./scripts/application/controllers/login/controllers.js"></script>
+  <script src="./scripts/application/controllers/login/services.js"></script>
 
 
-    <!-- Please add new js to here --!>
-    <!--Library Files End-->
+
+  <!-- Please add new js to here --!>
+  <!--Library Files End-->
 
     <!-- jQuery 2.1.4 -->
     <script src="./styles/adminlte/plugins/jQuery/jQuery-2.1.4.min.js"></script>

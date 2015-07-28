@@ -7,8 +7,8 @@
 
 
 
-        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
-            function ($scope, $http,$routeParams,$filter,$location) {
+        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location','    $element',
+            function ($scope, $http,$routeParams,$filter,$location,$element) {
 
                 $scope.pagedItems    =  [];
                 $scope.messege='lol';

@@ -3,7 +3,8 @@
          '$filter', '$location',
         function ($scope, $http, $routeParams, $filter, $location) {
 
-
+            $scope.currentPath = $location.path();
+            alert($scope.currentPath );
             $scope.name = "Sithira";
             $scope.Visitors = "Click on Country";
 

@@ -100,7 +100,7 @@ function get_site()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from siteregistration');
+    $qry = mysql_query('SELECT * from siteregistration where StatusOf=1 order by SiteId desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -127,7 +127,7 @@ function get_sites_details()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from siteregistration');
+    $qry = mysql_query('SELECT * from siteregistration where StatusOf=1 order by id desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -195,7 +195,7 @@ function delete_site()
 {
 
     $data = json_decode(file_get_contents("php://input"));
-    $id=mysql_real_escape_string($data->SiteID);
+    $id=mysql_real_escape_string($data->id);
 
     $s='0';
 
@@ -205,7 +205,7 @@ function delete_site()
 
 
 
-    $qry = 'UPDATE staffregistraion SET status="'.$s.'"
+    $qry = 'UPDATE siteregistration SET StatusOf="'.$s.'"
 
         WHERE SiteID="'.$id.'"';
     $qry_res = mysql_query($qry);

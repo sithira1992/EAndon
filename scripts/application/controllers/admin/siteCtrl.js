@@ -90,6 +90,7 @@
                             $scope.get_sites();
                             $scope.messege='Site Details Deleted Successfully';
                             $scope.notify('success');
+
                         }
                         else
                         {

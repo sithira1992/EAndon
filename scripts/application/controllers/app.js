@@ -55,6 +55,14 @@
             };
             $stateProvider.state(site);
 
+            var Cost = {
+                name: "Cost",
+                url: '/Cost',
+                templateUrl: './views/Cost.html',
+                controller: 'CostCtrl'
+            };
+            $stateProvider.state(Cost);
+
             var updateSite = {
                 name: "updateSite",
                 url: '/updateSite',

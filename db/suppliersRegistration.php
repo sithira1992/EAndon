@@ -98,7 +98,7 @@ function get_suppliers()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from registersupplier');
+    $qry = mysql_query('SELECT * from registersupplier where statues=1 order by id desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -135,7 +135,7 @@ function  update_supplier()
     $email = mysql_real_escape_string($data->email);
     $supitem = mysql_real_escape_string($data->supitem);
     $unitprice = mysql_real_escape_string($data->unitprice);
-    $statues = mysql_real_escape_string($data->statues );
+
 
 
 
@@ -146,7 +146,7 @@ function  update_supplier()
 
 
     $qry = 'UPDATE registersupplier SET fullname="'.$fullName.'"  , address="'.$address.'", phone="'.$phone.'",
-                email="'.$email.'",supitem="'.$supitem.'",unitprice="'.$unitprice.'",statues="'.$statues.'"
+                email="'.$email.'",supitem="'.$supitem.'",unitprice="'.$unitprice.'"
 
         WHERE id="'.$id.'"';
     $qry_res = mysql_query($qry);
@@ -172,7 +172,7 @@ function delete_supplier()
     $data = json_decode(file_get_contents("php://input"));
     $id=mysql_real_escape_string($data->id);
 
-    $s='0';
+    $supplierstatues='0';
 
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
@@ -180,7 +180,7 @@ function delete_supplier()
 
 
 
-    $qry = 'UPDATE registersupplier SET ss="'.$s.'"
+    $qry = 'UPDATE registersupplier SET ss="'.$supplierstatues.'"
 
         WHERE id="'.$id.'"';
     $qry_res = mysql_query($qry);

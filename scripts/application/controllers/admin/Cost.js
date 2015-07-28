@@ -1,64 +1,67 @@
-/**
- * Created by Administrator on 7/21/2015.
- */
 (function (angular) {
 
     angular.module('andonControllers')
 
-
-
-        .controller("supplierCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
+//Staff Registration Controller for all
+        .controller("CostCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
             function ($scope, $http,$routeParams,$filter,$location) {
 
-                $scope.submit= function () {    // submite button
+                $scope.pagedItems = [];
+                $scope.messege='lol';
 
-                    $scope.msgs = [];
-                    $http.post('db/suppliersRegistration.php?action=add_supplier',{'suppliername':$scope.suppliername,'supplieraddress':$scope.supplieraddress,'supplierphone':$scope.supplierphone,
-                        'supplieremail':$scope.supplieremail,'supplieritem':$scope.supplieritem,'supplierunitprice':$scope.supplierunitprice}).success(function(data, status, headers, config) {
-                        if (data.msg != '')
-                        {
-                            msgs="**Suppler Register Successfully**"
-                            $scope.notify('success');
-                            $scope.msgs.push(msgs);
-
-                        }
-                        else
-                        {
-                            msgs="**Not Register**"
-                            $scope.notify('error');
-                            $scope.msgs.push(msgs);
-                        }
-                    }).error(function(data, status) { // called asynchronously if an error occurs
-// or server returns response with an error status.
-                        $scope.msgs.push(status);
-
-                    });
-                }
-                $scope.get_suppliers = function() {
-                    $http.get('db/suppliersRegistration.php?action=get_suppliers').success(function(data)
-                    {
+                $scope.get_Cost = function () {
+                    $http.get('db/Cost.php?action=get_Cost').success(function (data) {
                         //$scope.product_detail = data;
-                        $scope.supplierDetails = data;
+                        $scope.Costs = data;
 
+                    });
+                }
+                $scope.titles = ['Cost'];
+                $scope.submit = function () {
+
+                    $scope.msgs = [];
+
+                    $http.post('db/Cost.php?action=add_Cost', {
+                        'Cost_Name': $scope.Cost_Name, 'Amount': $scope.Amount
+                    }).success(function (data, status, headers, config) {
+                        if (data.msg != '') {
+
+                            $scope.messege='Successfully';
+                            $scope.notify('success');
+                            $scope.msgs.push(data.msg);
+                            $scope.get_Cost();
+
+                        }
+                        else {
+
+                            $scope.messege='Not Successfully';
+                            $scope.notify('error');
+                            $scope.msgs.push(data.error);
+                        }
+                    }).error(function (data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+
+                        $scope.messege='Not Successfully';
+                        $scope.notify('error');
                     });
                 }
 
 
 
-                $scope.update= function (supplierDetail) {    //Update button
+                $scope.update= function (StaffDetail) {    //update button
+
 
                     $scope.msgs = [];
-                    $http.post('db/suppliersRegistration.php?action=update_supplier',{'id':supplierDetail.id,'name':supplierDetail.fullname,'address':supplierDetail.address,'phone':supplierDetail.phone,
-                        'email':supplierDetail.email,'supitem':supplierDetail.supitem,'unitprice':supplierDetail.unitprice}).success(function(data, status, headers, config) {
+                    $http.post('db/Cost.php?action=update_Cost',{'id':StaffDetail.id,'name':StaffDetail.fullName,'address':StaffDetail.address,'gender':StaffDetail.gender,
+                        'nic':StaffDetail.nic,'phone':StaffDetail.phone,'jobPosition':StaffDetail.jobPosition,'email':StaffDetail.email}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
                             msgs="**Updated Successfully**";
                             msgs="**Updated Successfully**";
-                            $scope.messege='Supplier Updated Successfully';
+                            $scope.messege='Updated Successfully';
                             $scope.notify('success');
                             $scope.msgs.push(msgs);
-                            $scope.get_suppliers();
-
+                            $scope.get_staff();
                         }
                         else
                         {
@@ -73,15 +76,15 @@
                 }
 
 
-                $scope.delete= function (supplierDetail) {    //update button
+                $scope.delete= function (StaffDetail) {    //Delete button
 
                     $scope.msgs = [];
-                    $http.post('db/suppliersRegistration.php?action=delete_supplier',{'id':supplierDetail.id}).success(function(data, status, headers, config) {
+                    $http.post('db/Cost.php?action=delete_staff',{'id':StaffDetail.id}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
                             msgs="**Deleted Successfully**"
                             $scope.msgs.push(msgs);
-                            $scope.get_suppliers();
+                            $scope.get_staff();
                             $scope.messege='Staff Member Deleted Successfully';
                             $scope.notify('success');
                         }
@@ -110,7 +113,10 @@
                         clickToHide: true
                     });
                 }
+            }])
 
 
-            }]);
-})(angular);
+    ;
+})(angular);/**
+ * Created by Mahesh on 7/28/2015.
+ */

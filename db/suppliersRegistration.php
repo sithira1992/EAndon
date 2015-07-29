@@ -104,6 +104,7 @@ function get_suppliers()
     while($rows = mysql_fetch_array($qry))
     {
         $data[] = array(
+            "id"           =>$rows['id'],
             "fullname"    => $rows['fullname'],
             "address"     => $rows['address'],
             "phone"       => $rows['phone'],
@@ -172,7 +173,7 @@ function delete_supplier()
     $data = json_decode(file_get_contents("php://input"));
     $id=mysql_real_escape_string($data->id);
 
-    $supplierstatues='0';
+    $statues='0';
 
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
@@ -180,7 +181,7 @@ function delete_supplier()
 
 
 
-    $qry = 'UPDATE registersupplier SET ss="'.$supplierstatues.'"
+    $qry = 'UPDATE registersupplier SET statues="'.$statues.'"
 
         WHERE id="'.$id.'"';
     $qry_res = mysql_query($qry);

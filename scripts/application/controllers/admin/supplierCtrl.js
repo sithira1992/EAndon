@@ -13,6 +13,7 @@
                 $scope.submit= function () {    // submite button
 
                     $scope.msgs = [];
+                    $scope.supplierDetail={};
                     $http.post('db/suppliersRegistration.php?action=add_supplier',{'suppliername':$scope.suppliername,'supplieraddress':$scope.supplieraddress,'supplierphone':$scope.supplierphone,
                         'supplieremail':$scope.supplieremail,'supplieritem':$scope.supplieritem,'supplierunitprice':$scope.supplierunitprice}).success(function(data, status, headers, config) {
                         if (data.msg != '')
@@ -47,8 +48,9 @@
 
                 $scope.update= function (supplierDetail) {    //Update button
 
+
                     $scope.msgs = [];
-                    $http.post('db/suppliersRegistration.php?action=update_supplier',{'id':supplierDetail.id,'name':supplierDetail.fullname,'address':supplierDetail.address,'phone':supplierDetail.phone,
+                    $http.post('db/suppliersRegistration.php?action=update_supplier', { 'id':supplierDetail.id,'name':supplierDetail.fullname,'address':supplierDetail.address,'phone':supplierDetail.phone,
                         'email':supplierDetail.email,'supitem':supplierDetail.supitem,'unitprice':supplierDetail.unitprice}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
@@ -74,7 +76,7 @@
 
 
                 $scope.delete= function (supplierDetail) {    //update button
-
+                    alert(supplierDetail.id);
                     $scope.msgs = [];
                     $http.post('db/suppliersRegistration.php?action=delete_supplier',{'id':supplierDetail.id}).success(function(data, status, headers, config) {
                         if (data.msg != '')

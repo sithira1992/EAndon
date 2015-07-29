@@ -46,12 +46,12 @@ function add_Cost()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry_em = 'select count(*) as cnt from cost where Amount ="' . $Amount . '"';
+    $qry_em = 'select count(*) as cnt from cost where Cost_Name ="' . $Cost_Name . '"';
     $qry_res = mysql_query($qry_em);
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO cost(Cost_Name,Amount,status) values ("' . $Cost_Name . '","' . $Amount .'")';
+        $qry = 'INSERT INTO cost(Cost_Name,Amount,status) values ("' . $Cost_Name . '","' . $Amount .'","'.$status.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');

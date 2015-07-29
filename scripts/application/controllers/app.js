@@ -55,13 +55,13 @@
             };
             $stateProvider.state(site);
 
-            var site = {
+            var Order = {
                 name: "Order",
                 url: '/Order',
                 templateUrl: './views/OrderRequestForm.html',
                 controller: 'orderCtrl'
             };
-            $stateProvider.state(site);
+            $stateProvider.state(Order);
 
             var Cost = {
                 name: "Cost",

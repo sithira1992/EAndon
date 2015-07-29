@@ -22,7 +22,7 @@
                     $scope.msgs = [];
 
                     $http.post('db/Cost.php?action=add_Cost', {
-                        'Cost_Name': $scope.Cost_Name, 'Amount': $scope.Amount
+                        'Cost_Name': $scope.costItem, 'Amount': $scope.costAmount
                     }).success(function (data, status, headers, config) {
                         if (data.msg != '') {
 

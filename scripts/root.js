@@ -7,7 +7,7 @@
 
 
         $scope.userId=17;
-alert($scope.currentPath)
+
             $scope.clock = "loading clock..."; // initialise the time variable
             $scope.tickInterval = 1; //ms
 

@@ -130,6 +130,7 @@
                         <th>Unit</th>
                         <th>Quantity</th>
                         <th>Date</th>
+                        <th>Status</th>
                     </tr>
                     <tr ng-repeat="detail in details">
                         <td>{{detail.SiteAddress}}</td>
@@ -138,6 +139,9 @@
                         <td class="center">{{detail.Unit}}</td>
                         <td class="center">{{detail.Quantity}}</td>
                         <td class="center">{{detail.Date}}</td>
+                        <td class="center">
+                            <span class="label label-primary">Approved</span>
+                        </td>
                         <td class="center">
                             <button class="btn btn-block btn-success">Edit</button>
                             <button class="btn btn-block btn-danger">Delete</button>

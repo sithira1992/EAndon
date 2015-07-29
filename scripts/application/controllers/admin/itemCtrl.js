@@ -107,6 +107,20 @@
 
                     });
                 }
+
+                /*
+                To get order request acccording to user id
+                 */
+
+                $scope.get_items_status = function() {
+                    $http.get('db/ItemDetails.php?action=get_items').success(function(data)
+                    {
+                        //$scope.product_detail = data;
+                        $scope.ItemDetails = data;
+
+                    });
+                }
+
                 $scope.notify=function(style)
                 {
 

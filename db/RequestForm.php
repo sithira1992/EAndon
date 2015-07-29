@@ -40,6 +40,7 @@ function add_request()
     $quantity = mysql_real_escape_string($data->quantity);
     $date = mysql_real_escape_string($data->date);
    $to = mysql_real_escape_string($data->to);
+    $status=1;
 //$uemail = mysql_real_escape_string($data->email);
 
     $con = mysql_connect('localhost', 'root', '');
@@ -47,7 +48,7 @@ function add_request()
 
 
 {
-        $qry = 'INSERT INTO requestform (FK_Location,FK_Manager,Item,Unit,Quantity,Date,FK_Qs) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'")';
+        $qry = 'INSERT INTO requestform (FK_Location,FK_Manager,Item,Unit,Quantity,Date,FK_Qs,Qs_Status,status) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'","'.$status.'","'.$status.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');

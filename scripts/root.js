@@ -6,8 +6,8 @@
 
 
 
-        $scope.userId=17;
-
+        $scope.userId=10;
+alert($scope.currentPath)
             $scope.clock = "loading clock..."; // initialise the time variable
             $scope.tickInterval = 1; //ms
 
@@ -30,13 +30,12 @@
 
             $scope.messeges='lol';
         $scope.message="This DIV is refreshed "+c+" time.";
-      /*  var timer=$interval(function(){
+        var timer=$interval(function(){
             $scope.message="This DIV is refreshed "+c+" time.";
             c++;
             $scope.id=12;
 
-         $http.post('db/RequestForm.php?action=get_OrderDetails_request',
-             {
+            $http.post('db/RequestForm.php?action=get_OrderDetails_request', {
                 'id': $scope.userId
 
             }).success(function (data, status, headers, config) {
@@ -45,8 +44,8 @@
 
                 if(data.length>0) {
 
-                  $scope.messeges = 'You Receive '+data.length+ ' Order Request to Approve <a href="#/Order">link</a>';
-                   $scope.notify('info');
+                    $scope.messeges = 'You Receive '+data.length+ ' Order Request to Approve <a href="#/Order">link</a>';
+                    $scope.notify('info');
                 }
 
             }
@@ -64,10 +63,10 @@
                         $scope.notify('info');
                     }
 
-                }
+                }*/
             );
 
-        },5000);*/
+        },5000);
 
             $scope.killtimer=function(){
                 if(angular.isDefined(timer))

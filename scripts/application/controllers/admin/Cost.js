@@ -85,8 +85,8 @@
                             msgs="**Deleted Successfully**"
                             $scope.msgs.push(msgs);
                             $scope.get_staff();
-                            $scope.messege='Staff Member Deleted Successfully';
-                            $scope.notify('success');
+                                $scope.messege='Staff Member Deleted Successfully';
+                                $scope.notify('success');
                         }
                         else
                         {

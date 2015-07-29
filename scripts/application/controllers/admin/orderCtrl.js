@@ -7,8 +7,8 @@
 
 
 
-        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location','    $element',
-            function ($scope, $http,$routeParams,$filter,$location,$element) {
+        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
+            function ($scope, $http,$routeParams,$filter,$location) {
 
                 $scope.pagedItems    =  [];
                 $scope.messege='lol';
@@ -50,9 +50,11 @@
                         if (data.msg != '')
                         {
 
-                            $scope.get_OrderDetails_request();
+
                             msgs="**Order Create Successfully**"
                             $scope.get_Order_details();
+                            $scope.messege='Order Send to Qs To Approve ';
+                            $scope.notify('success');
                             $scope.msgs.push(msgs);
                         }
                         else
@@ -106,7 +108,7 @@
                     $.notify({
                         title: 'Submission Status',
                         text: $scope.messege,
-                        image: "<img src='./images/Mail.png'/>"
+                        image: "<img src='./images/select.png'/>"
                     }, {
                         style: 'metro',
                         className: style,

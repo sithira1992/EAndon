@@ -45,12 +45,9 @@ function add_request()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry_em = 'select count(*) as itm from requestform where item_name ="' . item . '"';
-    $qry_res = mysql_query($qry_em);
-    $res = mysql_fetch_assoc($qry_res);
 
-    if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO requestform (FK_Location,FK_ManagerName,Item,Unit,Quantity,Date,FK_SendTo) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'")';
+{
+        $qry = 'INSERT INTO requestform (FK_Location,FK_Manager,Item,Unit,Quantity,Date,FK_Qs) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -61,10 +58,6 @@ function add_request()
             $jsn = json_encode($arr);
             print_r($jsn);
         }
-    } else {
-        $arr = array('msg' => "", 'error' => 'User Already exists with same nic');
-        $jsn = json_encode($arr);
-        print_r($jsn);
     }
 }
 

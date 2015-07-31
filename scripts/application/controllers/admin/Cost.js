@@ -48,12 +48,11 @@
 
 
 
-                $scope.update= function (StaffDetail) {    //update button
+                $scope.update= function (Cost) {    //update button
 
 
                     $scope.msgs = [];
-                    $http.post('db/Cost.php?action=update_Cost',{'id':StaffDetail.id,'name':StaffDetail.fullName,'address':StaffDetail.address,'gender':StaffDetail.gender,
-                        'nic':StaffDetail.nic,'phone':StaffDetail.phone,'jobPosition':StaffDetail.jobPosition,'email':StaffDetail.email}).success(function(data, status, headers, config) {
+                    $http.post('db/Cost.php?action=update_Cost',{'id':Cost.id,'Cost_Name':Cost.Cost_Name,'Amount':Cost.Amount}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
                             msgs="**Updated Successfully**";
@@ -61,7 +60,7 @@
                             $scope.messege='Updated Successfully';
                             $scope.notify('success');
                             $scope.msgs.push(msgs);
-                            $scope.get_staff();
+                            $scope.get_Cost();
                         }
                         else
                         {
@@ -76,16 +75,16 @@
                 }
 
 
-                $scope.delete= function (StaffDetail) {    //Delete button
+                $scope.delete= function (Cost) {    //Delete button
 
                     $scope.msgs = [];
-                    $http.post('db/Cost.php?action=delete_staff',{'id':StaffDetail.id}).success(function(data, status, headers, config) {
+                    $http.post('db/Cost.php?action=delete_Cost',{'id':Cost.id}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
                             msgs="**Deleted Successfully**"
                             $scope.msgs.push(msgs);
                             $scope.get_staff();
-                                $scope.messege='Staff Member Deleted Successfully';
+                                $scope.messege='Deleted Successfully';
                                 $scope.notify('success');
                         }
                         else

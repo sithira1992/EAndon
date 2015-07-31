@@ -19,12 +19,12 @@ switch($_GET['action'])  {
         edit_staff();
         break;
 
-    case 'delete_staff' :
-        delete_staff();
+    case 'delete_Cost' :
+        delete_Cost();
         break;
 
-    case 'update_staff' :
-        update_staff();
+    case 'update_Cost' :
+        update_Cost();
         break;
 
     case 'get_staff' :
@@ -90,3 +90,67 @@ function get_Cost()
 
 
 }
+
+
+function  update_Cost()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+    $Cost_Name = mysql_real_escape_string($data->Cost_Name);
+    $Amount = mysql_real_escape_string($data->Amount);
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+    $qry = 'UPDATE cost SET Cost_Name="'.$Cost_Name.'"  , Amount="'.$Amount.'"
+
+        WHERE id="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+}
+
+function delete_supplier()
+{
+
+    $data = json_decode(file_get_contents("php://input"));
+    $id=mysql_real_escape_string($data->id);
+
+    $statues='0';
+
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+
+    $qry = 'UPDATE cost SET statues="'.$statues.'"
+
+        WHERE id="'.$id.'"';
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+}
+
+
+

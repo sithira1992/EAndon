@@ -1,1 +1,1 @@
-var andonControllers = angular.module('andonControllers',['ngAnimate']);
+var andonControllers = angular.module('andonControllers',['ngAnimate','ngCookies']);

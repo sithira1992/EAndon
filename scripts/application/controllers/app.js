@@ -1,5 +1,5 @@
 (function (angular, $) {
-    var appRoot = angular.module('myApp', ['andonControllers','ngGrid','ui.autocomplete', 'google-maps'.ns(),'ngRoute', 'ui.router',
+    var appRoot = angular.module('myApp', ['andonControllers','ngGrid','ui.autocomplete', 'google-maps'.ns(),'ngRoute', 'ui.router','ngCookies',
          'ui.bootstrap.datetimepicker', 'ui.bootstrap','angular.morris-chart','ngAnimate']);
     appRoot.config([
         '$routeProvider', '$locationProvider', '$stateProvider',
@@ -9,7 +9,7 @@
             var login = {
                 name: "login",
                 url: '/login',
-                templateUrl: './views/login.html',
+                templateUrl: './views/login.view.html',
                 controller: 'LoginController'
             };
             $stateProvider.state(login);
@@ -104,8 +104,8 @@
             $stateProvider.state(UpdateItemDetails);
 
 
-        }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location',
-        function($rootScope, $state, $stateParams, ajaxService, $location) {
+        }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location','$cookieStore','$http',
+        function($rootScope, $state, $stateParams, ajaxService, $location,$cookieStore,$http) {
             $.blockUI.defaults.css.border = '1px solid #CCCCCC';
             $(document).ajaxStart(function() {
                 $.blockUI({
@@ -133,9 +133,34 @@
                 }, 2000);
             });
 
+
+       $rootScope.globals = $cookieStore.get('globals') || {};
+
+
+            if ($rootScope.globals.currentUser) {
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+
+            }
+            else
+            {
+
+                $state.transitionTo('login');
+            }
+            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                // redirect to login page if not logged in and trying to access a restricted page
+                var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+                var loggedIn = $rootScope.globals.currentUser;
+
+                if (restrictedPage && !loggedIn) {
+                    $state.transitionTo('login');
+                    $location.path('login');
+                }
+            });
+
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-       $state.transitionTo('dashboard');
+       $state.transitionTo('login');
+
             
         }]);
 })(angular, jQuery);

@@ -77,15 +77,17 @@
 
                 $scope.delete= function (Cost) {    //Delete button
 
+                    alert(Cost.id);
                     $scope.msgs = [];
                     $http.post('db/Cost.php?action=delete_Cost',{'id':Cost.id}).success(function(data, status, headers, config) {
                         if (data.msg != '')
                         {
                             msgs="**Deleted Successfully**"
                             $scope.msgs.push(msgs);
-                            $scope.get_staff();
+
                                 $scope.messege='Deleted Successfully';
                                 $scope.notify('success');
+                            $scope.get_Cost();
                         }
                         else
                         {

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 
-<div ng-controller="refresh_control">
 
-</div>
 <html lang="en" ng-app="myApp"  >
   <head>
     <meta charset="UTF-8">
@@ -24,6 +22,22 @@
     <!-- Morris chart -->
     <link href="./styles/adminlte/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <script  src="./scripts/lib/jQuery/jquery-2.1.1.min.js"></script>
+      <script  src="./scripts/lib/jQuery/jquery.soap.js"></script>
+      <script src="./scripts/lib/bootstrap/bootstrap.min.js"></script>
+      <script src="./scripts/lib/ie10-viewport-bug-workaround.js"></script>
+      <script  src="./scripts/lib/angular/angular.min.js"></script>
+      <script src="./scripts/lib/angular/angular-ui-router.js"></script>
+      <script src="./scripts/lib/angular/angular-route.min.js"></script>
+      <script src="./scripts/lib/angular/angular-animate.min.js"></script>
+      <script  src="./scripts/lib/angular/angular-resource.js"></script>
+      <script src="./scripts/lib/raphael/raphael.js"></script>
+      <script src="./scripts/lib/morris/morris.js"></script>
+      <script src="./scripts/lib/morris/angular-morris-chart.min.js"></script>
+      <script src="./scripts/lib/plugins/moment.js"></script>
+      <script src="./scripts/lib/angular/angular-cookies.min.js"></script>
+
+      <script src="./scripts/application/controllers/module.js"></script>
+      <script src="./scripts/application/services/ajax.js"></script>
     <!-- jvectormap
     <script src="./scripts/lib/plugins/jvectormap/jquery-jvectormap-2.0.2.css" type="text/javascript"></script>-->
     <!-- <script src="http://jvectormap.com/js/jquery-jvectormap-1.2.2.min.js"></script>
@@ -49,9 +63,9 @@
   </head>
 
   <body class="skin-blue sidebar-mini" ng-controller="RootController">
-  <div id="lol">
-    <div class="wrapper">
 
+    <div class="wrapper">
+        <div  ng-if="showSideBar">
       <header class="main-header">
         <!-- Logo -->
         <a href="#" class="logo">
@@ -263,12 +277,12 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="./images/aaaaaaaa.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Mahesh Udara  {{userId}}</span>
+                  <span class="hidden-xs">{{globals.currentUser.username}}{{userId}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="./images/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    <img src="./images/aaaaaaaa.jpg"  class="img-circle" alt="User Image" />
                     <p>
                       Alexander Pierce - Web Developer
                       <small>Member since Nov. 2012</small>
@@ -292,7 +306,11 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                        <div ng-controller="refresh_control">
+
+
+                      <a href="#/login" class="btn btn-default btn-flat" ng-click="killtimer()">Sign out</a>
+                        </div>
                     </div>
                   </li>
                 </ul>
@@ -315,7 +333,7 @@
               <img src="./images/aaaaaaaa.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Mahesh Udara</p>
+              <p>{{globals.currentUser.username}}</p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -357,7 +375,7 @@
         </section>
         <!-- /.sidebar -->
       </aside>
-
+        </div>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" ui-view>
 
@@ -458,21 +476,10 @@
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
 
-  </div>
+
     <!--Library Files-->
 
-    <script  src="./scripts/lib/jQuery/jquery.soap.js"></script>
-    <script src="./scripts/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="./scripts/lib/ie10-viewport-bug-workaround.js"></script>
-    <script  src="./scripts/lib/angular/angular.min.js"></script>
-    <script src="./scripts/lib/angular/angular-ui-router.js"></script>
-    <script src="./scripts/lib/angular/angular-route.min.js"></script>
-    <script src="./scripts/lib/angular/angular-animate.min.js"></script>
-    <script  src="./scripts/lib/angular/angular-resource.js"></script>
-    <script src="./scripts/lib/raphael/raphael.js"></script>
-    <script src="./scripts/lib/morris/morris.js"></script>
-    <script src="./scripts/lib/morris/angular-morris-chart.min.js"></script>
-    <script src="./scripts/lib/plugins/moment.js"></script>
+
 
 
     <script src="./scripts/lib/plugins/ng-grid-flexible-height.js"></script>
@@ -490,9 +497,9 @@
 <!-- Please add new js to here -->
 
 
-    <script src="./scripts/application/controllers/module.js"></script>
+
     <script src="./scripts/application/controllers/app.js"></script>
-    <script src="./scripts/application/services/ajax.js"></script>
+
     <script src="./scripts/application/controllers/admin/controller.js"></script>
     <script src="./scripts/application/controllers/admin/supplierCtrl.js"></script>
     <script src="./scripts/application/controllers/admin/itemCtrl.js"></script>
@@ -504,6 +511,7 @@
   <script src="./scripts/application/controllers/login/controllers.js"></script>
   <script src="./scripts/application/controllers/login/services.js"></script>
   <script src="./scripts/application/controllers/admin/Cost.js"></script>
+<script src="./scripts/application/controllers/admin/login.js"></script>
 
 
 

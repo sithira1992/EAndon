@@ -1,10 +1,12 @@
 (function (angular) {
     angular.module('andonControllers').controller("DashboardController", ['$scope', '$http', '$routeParams',
-         '$filter', '$location',
-        function ($scope, $http, $routeParams, $filter, $location) {
+         '$filter', '$location','$route','$rootScope',
+        function ($scope, $http, $routeParams, $filter, $location,$route,$rootScope) {
 
-            $scope.currentPath = $location.path();
-            alert($scope.currentPath );
+
+            $rootScope.showSideBar=true;
+
+
             $scope.name = "Sithira";
             $scope.Visitors = "Click on Country";
 

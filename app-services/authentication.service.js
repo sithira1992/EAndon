@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('andonControllers')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
+    AuthenticationService.inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
     function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
         var service = {};
 
@@ -17,7 +17,7 @@
 
         function Login(username, password, callback) {
 
-
+alert('lol');
             /* Dummy authentication for testing, uses $timeout to simulate api call
              ----------------------------------------------*/
 

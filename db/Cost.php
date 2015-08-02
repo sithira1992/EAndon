@@ -80,6 +80,7 @@ function get_Cost()
     while($rows = mysql_fetch_array($qry))
     {
         $data[] = array(
+            "id"                    =>$rows['id'],
             "Cost_Name"            => $rows['Cost_Name'],
             "Amount"               => $rows['Amount'],
 
@@ -122,7 +123,7 @@ function  update_Cost()
 
 }
 
-function delete_supplier()
+function delete_cost()
 {
 
     $data = json_decode(file_get_contents("php://input"));
@@ -134,11 +135,12 @@ function delete_supplier()
     mysql_select_db('ranweli', $con);
 
 
+echo($id);
 
-
-    $qry = 'UPDATE cost SET statues="'.$statues.'"
+    $qry = 'UPDATE cost SET status="'.$statues.'"
 
         WHERE id="'.$id.'"';
+    echo($qry);
     $qry_res = mysql_query($qry);
     if ($qry_res) {
         $arr = array('msg' => "User Created Successfully!!!", 'error' => '');

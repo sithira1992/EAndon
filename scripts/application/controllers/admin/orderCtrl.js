@@ -9,9 +9,23 @@
 
         .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
             function ($scope, $http,$routeParams,$filter,$location) {
+                $scope.sortType     = 'name'; // set the default sort type
+                $scope.sortReverse  = false;  // set the default sort order
+                $scope.searchItem   = '';     // set the default search/filter term
+                $scope.totalDisplayed=5;
+
 
                 $scope.pagedItems    =  [];
                 $scope.messege='lol';
+
+
+                 /*
+                   To load data more
+                 */
+
+                $scope.loadMore = function () {
+                    $scope.totalDisplayed += 5;
+                };
                 $scope.get_location = function() {
                     $http.get('db/SiteRegistration.php?action=get_location').success(function(data)
                     {

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2015 at 06:58 PM
--- Server version: 5.5.34
--- PHP Version: 5.4.22
+-- Generation Time: Aug 03, 2015 at 12:53 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,15 +32,14 @@ CREATE TABLE IF NOT EXISTS `cost` (
   `Amount` varchar(45) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `cost`
 --
 
 INSERT INTO `cost` (`id`, `Cost_Name`, `Amount`, `status`) VALUES
-(3, 'lol', '1000', 1),
-(4, 'Light bill', '10000', 1);
+(3, 'aa', '1000', 1);
 
 -- --------------------------------------------------------
 
@@ -157,6 +156,7 @@ CREATE TABLE IF NOT EXISTS `requestform` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `FK_Location` int(11) DEFAULT NULL,
   `FK_Manager` int(11) DEFAULT NULL,
+  `Order_Status` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
   `Item` varchar(45) DEFAULT NULL,
   `Unit` varchar(45) DEFAULT NULL,
@@ -173,35 +173,35 @@ CREATE TABLE IF NOT EXISTS `requestform` (
 -- Dumping data for table `requestform`
 --
 
-INSERT INTO `requestform` (`id`, `FK_Location`, `FK_Manager`, `status`, `Item`, `Unit`, `Quantity`, `Date`, `FK_Qs`, `Qs_Status`) VALUES
-(1, 5, 15, NULL, 'Bricks', 'Kg', '45', '2015-10-06', NULL, NULL),
-(2, 5, 16, NULL, 'Sand', 'cube', '5', '2015-10-06', NULL, NULL),
-(3, 5, 0, NULL, 'Cement', 'Bags', '11', '2015-10-04', NULL, NULL),
-(4, 0, 16, NULL, 'Cement', 'cube', '45', '2015-10-04', NULL, NULL),
-(5, 5, 16, '1', 'Cement', 'cube', '45', '2015-10-04', NULL, NULL),
-(6, 5, 14, '1', 'Sand', 'cube', '2', '2015-10-04', NULL, NULL),
-(7, 5, 15, '1', 'Stone', 'cube', '3', '2015-10-04', NULL, NULL),
-(8, 5, 16, '1', 'Stone', 'cube', '5', '2015-10-04', NULL, NULL),
-(12, 5, 22, '1', '', 'cube', '5', '2015-07-26', NULL, NULL),
-(13, 5, 22, '1', '', 'cube', '5', '2015-07-26', NULL, NULL),
-(14, 5, 22, '1', 'Sand', 'cube', '5', '2015-07-26', 17, '1'),
-(15, 5, 22, NULL, 'Sand', 'cube', '10', '2015-07-26', 16, '1'),
-(16, 5, 22, '1', 'Sand', 'cube', '45', '2015-07-26', 17, NULL),
-(17, 5, 22, '1', 'Sand', 'cube', '15', '2015-07-26', 17, NULL),
-(18, 5, 22, '1', 'Stone', 'cube', '10', '2015-07-26', 22, NULL),
-(19, 5, 22, '1', 'Stone', 'cube', '12', '2015-07-26', 22, NULL),
-(20, 5, 22, '1', 'Stone', 'cube', '12', '2015-07-26', 22, NULL),
-(21, 5, 22, '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
-(22, 5, 22, '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
-(23, 5, 22, '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
-(24, 5, 22, NULL, 'Sand', 'cube', '10', '2015-05-30', 17, '2'),
-(25, 5, 22, '1', 'Chip', 'cube', '2', '2015-05-30', 20, '1'),
-(26, 5, 17, '1', 'Sand', 'cube', '2', '2015-07-27', 22, NULL),
-(27, 5, 22, '1', 'Chip', 'cube', '5', '2015-07-27', 17, NULL),
-(28, 5, 22, NULL, 'Stone', 'cube', '4', '2015-07-28', 16, NULL),
-(29, 5, 22, NULL, 'Chip', 'cube', '5', '2015-05-30', 17, NULL),
-(30, 5, 22, NULL, 'Chip', 'cube', '3', '2015-05-30', 16, NULL),
-(31, 5, 22, '1', 'Sand', 'cube', '6', '2015-05-30', 16, '1');
+INSERT INTO `requestform` (`id`, `FK_Location`, `FK_Manager`, `Order_Status`, `status`, `Item`, `Unit`, `Quantity`, `Date`, `FK_Qs`, `Qs_Status`) VALUES
+(1, 5, 15, '1', '0', 'Bricks', 'Kg', '45', '2015-10-06', NULL, NULL),
+(2, 5, 16, '2', '0', 'Sand', 'cube', '5', '2015-10-06', NULL, NULL),
+(3, 5, 0, '1', '0', 'Cement', 'Bags', '11', '2015-10-04', NULL, NULL),
+(4, 0, 16, '1', '0', 'Cement', 'cube', '45', '2015-10-04', NULL, NULL),
+(5, 5, 16, '1', '0', 'Cement', 'cube', '45', '2015-10-04', NULL, NULL),
+(6, 5, 14, '1', '0', 'Sand', 'cube', '2', '2015-10-04', NULL, NULL),
+(7, 5, 15, '1', '0', 'Stone', 'cube', '3', '2015-10-04', NULL, NULL),
+(8, 5, 16, '2', '0', 'Stone', 'cube', '5', '2015-10-04', NULL, NULL),
+(12, 5, 22, '2', '0', '', 'cube', '5', '2015-07-26', NULL, NULL),
+(13, 5, 22, '2', '0', '', 'cube', '5', '2015-07-26', NULL, NULL),
+(14, 5, 22, '2', '0', 'Sand', 'cube', '5', '2015-07-26', 17, '1'),
+(15, 5, 22, '2', NULL, 'Sand', 'cube', '10', '2015-07-26', 16, '1'),
+(16, 5, 22, '2', '1', 'Sand', 'cube', '45', '2015-07-26', 17, NULL),
+(17, 5, 22, '2', '1', 'Sand', 'cube', '15', '2015-07-26', 17, NULL),
+(18, 5, 22, '2', '1', 'Stone', 'cube', '10', '2015-07-26', 22, NULL),
+(19, 5, 22, '2', '1', 'Stone', 'cube', '12', '2015-07-26', 22, NULL),
+(20, 5, 22, '2', '1', 'Stone', 'cube', '12', '2015-07-26', 22, NULL),
+(21, 5, 22, '1', '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
+(22, 5, 22, '1', '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
+(23, 5, 22, '0', '1', 'Sand', 'cube', '55', '2015-05-30', 22, NULL),
+(24, 5, 22, '1', '1', 'Sand', 'cube', '10', '2015-05-30', 17, '2'),
+(25, 5, 22, '2', '1', 'Chip', 'cube', '2', '2015-05-30', 20, '1'),
+(26, 5, 17, '1', '1', 'Sand', 'cube', '2', '2015-07-27', 22, '1'),
+(27, 5, 22, '1', '1', 'Chip', 'cube', '5', '2015-07-27', 17, '1'),
+(28, 5, 22, '2', '1', 'Stone', 'cube', '4', '2015-07-28', 16, '1'),
+(29, 5, 22, '3', '1', 'Chip', 'cube', '5', '2015-05-30', 17, '1'),
+(30, 5, 22, '3', '1', 'Chip', 'cube', '3', '2015-05-30', 16, '1'),
+(31, 5, 22, '2', '1', 'Sand', 'cube', '6', '2015-05-30', 16, '1');
 
 -- --------------------------------------------------------
 
@@ -267,29 +267,13 @@ INSERT INTO `staffregistraion` (`id`, `fullName`, `address`, `gender`, `nic`, `p
 (13, 'a', 'a', 'male', '920915210v', '0716279549', 'saab', NULL, NULL, '0', NULL),
 (14, 'a', 'a', 'male', '920915210v', '0716279549', 'saab', NULL, NULL, '0', NULL),
 (15, 'sithira', 'Galle', 'male', '920915210v', '0716279549', 'saab', 'a@gmail.com', NULL, '1', NULL),
-(16, 'sithira', 'Galle', 'male', '920915210v', '0716279549', 'QS', 'a@gmail.com', NULL, '1', NULL),
+(16, 'sithira', 'Galle', 'male', '920915210v', '0716279549', 'QS', 'sit@gmail.com', NULL, '1', 's'),
 (17, 'sithira', 'aa', 'male', '920915211v', '0716279549', 'Site Manager', 'a@gmail.com', NULL, '1', NULL),
 (18, 'aa', 'a', 'male', '92091', '0716279549', 'volvo', 'a', NULL, '1', NULL),
 (19, 'a', 'a', 'male', '920915218v', '0716279549', 'audi', 'a@gmail.com', '0000-00-00 00:00:00', '1', NULL),
 (20, 'a', 'a', 'male', '920915213v', '0716279549', 'saab', 'a@gmail.com', NULL, '1', NULL),
-(21, 'sithira Pramudith', 'Galle', 'male', '900910528v', '0716279549', 'Admin', 'a@gmail.com', NULL, '1', 'a'),
+(21, 'sithira', 'Galle', 'male', '900910528v', '0716279549', 'Admin', 'a@gmail.com', NULL, '1', 'a'),
 (22, 'sithira Pramudith', 'Galle\nImaduwa', 'male', '92091528v', '0716279549', 'Admin', 'sith@gmail.com', '2015-07-25 00:00:00', '1', 'aaa');
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `itemdetails`
---
-ALTER TABLE `itemdetails`
-  ADD CONSTRAINT `fk_supp` FOREIGN KEY (`fk_SupplierId`) REFERENCES `staffregistraion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `itemregistration`
---
-ALTER TABLE `itemregistration`
-  ADD CONSTRAINT `FK_Supp_ID` FOREIGN KEY (`FK_Supp_ID`) REFERENCES `registersupplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

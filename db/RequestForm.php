@@ -69,8 +69,8 @@ function get_OrderDetails()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT r.id,st.fullname,s.SiteAddress,r.Item,r.Unit,r.Quantity,r.Date FROM ranweli.requestform r, ranweli.siteregistration s,ranweli.staffregistraion st
-where r.FK_Location=s.SiteID and r.FK_Manager=st.id');
+    $qry = mysql_query('SELECT r.id,st.fullname,s.SiteAddress,r.Item,r.Unit,r.Quantity,r.Date,r.Order_Status FROM ranweli.requestform r, ranweli.siteregistration s,ranweli.staffregistraion st
+where r.FK_Location=s.SiteID and r.FK_Manager=st.id and r.status=1');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -83,6 +83,7 @@ where r.FK_Location=s.SiteID and r.FK_Manager=st.id');
             "Unit"     => $rows['Unit'],
             "Quantity"     => $rows['Quantity'],
             "Date"     => $rows['Date'],
+            "Status"    =>$rows['Order_Status']
         );
     }
     print_r(json_encode($data));

@@ -140,7 +140,10 @@
                         <td class="center">{{detail.Quantity}}</td>
                         <td class="center">{{detail.Date}}</td>
                         <td class="center">
-                            <span class="label label-primary">Approved</span>
+                            <span class="label  label-danger" ng-if="detail.Status==0">Denied</span>
+                            <span class="label label-warning" ng-if="detail.Status==1">Pending</span>
+                            <span class="label label-primary" ng-if="detail.Status==2">QS Approved</span>
+                            <span class="label label-success" ng-if="detail.Status==3">Admin Approved</span>
                         </td>
                         <td class="center">
                             <button class="btn btn-block btn-success">Edit</button>

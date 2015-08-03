@@ -82,13 +82,15 @@
                     };
 
                   $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+                    alert('coo1');
                   $cookieStore.put('globals', $rootScope.globals);
+                    alert('coo2');
                 }
 
 
                 $scope.ClearCredentials=function()
                  {
-
+                alert('clear');
                     $rootScope.globals = {};
 
                     $cookieStore.remove('globals');

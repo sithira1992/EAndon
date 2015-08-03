@@ -104,8 +104,8 @@
             $stateProvider.state(UpdateItemDetails);
 
 
-        }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location','$cookieStore','$http',
-        function($rootScope, $state, $stateParams, ajaxService, $location,$cookieStore,$http) {
+        }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location','$cookieStore','$http','$window',
+        function($rootScope, $state, $stateParams, ajaxService, $location,$cookieStore,$http,$window) {
             $.blockUI.defaults.css.border = '1px solid #CCCCCC';
             $(document).ajaxStart(function() {
                 $.blockUI({
@@ -138,13 +138,15 @@
 
 
             if ($rootScope.globals.currentUser) {
+
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
 
             }
             else
             {
 
-                $state.transitionTo('login');
+                $window.location.href = " http://localhost:63342/EAndon/log.html#/login";
+            //    $state.transitionTo('login');
             }
             $rootScope.$on('$locationChangeStart', function (event, next, current) {
                 // redirect to login page if not logged in and trying to access a restricted page
@@ -152,14 +154,15 @@
                 var loggedIn = $rootScope.globals.currentUser;
 
                 if (restrictedPage && !loggedIn) {
-                    $state.transitionTo('login');
-                    $location.path('login');
+          //          $state.transitionTo('login');
+                    $window.location.href = " http://localhost:63342/EAndon/log.html#/login";
+               //     $location.path('login');
                 }
             });
 
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
-       $state.transitionTo('login');
+       $state.transitionTo('dashboard');
 
             
         }]);

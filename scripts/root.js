@@ -1,5 +1,5 @@
 (function(angular) {
-    angular.module('myApp').controller("RootController", ['$scope', '$http', '$routeParams', '$filter', '$location','$timeout','$element','$rootScope',
+    angular.module('myApp').controller("RootController", ['$scope', '$http', '$routeParams', '$filter', '$location','$timeout','$element','$rootScope','$window',
         function($scope, $http, $routeParams, $filter, $location,$timeout,$element,$rootScope) {
 
             //$scope.search = "Search Valueas";
@@ -27,7 +27,7 @@
 
 
 
- .controller('refresh_control',function($scope,$interval ,$http,$rootScope,$cookieStore) {
+ .controller('refresh_control',function($scope,$interval ,$http,$rootScope,$cookieStore,$window) {
 
             var c = 0;
             $rootScope.globals = $cookieStore.get('globals') || {};
@@ -35,7 +35,7 @@
 
             if ($rootScope.globals.currentUser) {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-                alert('success');
+
 
                 $scope.messeges = 'lol';
                 $scope.message = "This DIV is refreshed " + c + " time.";
@@ -66,13 +66,14 @@
                 }
                 $scope.killtimer = function () {
 
-                alert('lol')
+
                     if (angular.isDefined(timer)) {
                         $interval.cancel(timer);
                         timer = undefined;
                         $scope.message = "Timer is killed :-(";
+                        $window.location.href = " http://localhost:63342/EAndon/log.html#/login";
                     }
-
+                    $window.location.href = " http://localhost:63342/EAndon/log.html#/login";
                 };
 
                 $scope.notify = function (style) {

@@ -81,8 +81,8 @@
                     $http.get('db/RequestForm.php?action=get_OrderDetails_request').success(function(data)
                     {
 
-                        alert('lollllll');
-                        alert(data.length);
+
+
                         //$scope.product_detail = data;
                         $scope.detailsa = data;
 

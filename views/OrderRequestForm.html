@@ -35,7 +35,7 @@
                             <div class="col-sm-10">
 
                                 <select class="form-control" style="width:270px" ng-model="mngId">
-                                    <option ng-repeat="manager in managers" value="{{manager.id}}">{{manager.full_name}}</option>                                </select>
+                                    <option value="{{globals.currentUser.id}}" >{{globals.currentUser.username}}</option>                                </select>
 
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="col-sm-10">
 
                                 <select class="form-control" style="width:270px" ng-model="toId">
-                                    <option ng-repeat="manager in managers" value="{{manager.id}}">{{manager.full_name}}</option>                                </select>
+                                    <option ng-repeat="manager in managers" ng-if="manager.position=='QS'" value="{{manager.id}}">{{manager.full_name}}</option>                                </select>
 
                             </div>
                         </div>

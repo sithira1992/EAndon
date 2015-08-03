@@ -48,7 +48,7 @@ function add_request()
 
 
 {
-        $qry = 'INSERT INTO requestform (FK_Location,FK_Manager,Item,Unit,Quantity,Date,FK_Qs,Qs_Status,status) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'","'.$status.'","'.$status.'")';
+        $qry = 'INSERT INTO requestform (FK_Location,FK_Manager,Item,Unit,Quantity,Date,FK_Qs,Qs_Status,status,Order_Status) values ("' . $locId . '","' . $mngId . '","' . $item . '","' . $measure . '","' . $quantity . '","' . $date .'","'.$to.'","'.$status.'","'.$status.'","'.$status.'")';
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -70,7 +70,7 @@ function get_OrderDetails()
     mysql_select_db('ranweli', $con);
 
     $qry = mysql_query('SELECT r.id,st.fullname,s.SiteAddress,r.Item,r.Unit,r.Quantity,r.Date,r.Order_Status FROM ranweli.requestform r, ranweli.siteregistration s,ranweli.staffregistraion st
-where r.FK_Location=s.SiteID and r.FK_Manager=st.id and r.status=1');
+where r.FK_Location=s.SiteID and r.FK_Manager=st.id and r.status=1 order by r.id desc ');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))

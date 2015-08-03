@@ -87,6 +87,7 @@ function get_manager()
         $data[] = array(
             "id"            => $rows['id'],
             "full_name"     => $rows['fullName'],
+            "position"      =>$rows['jobPosition'],
 
         );
     }

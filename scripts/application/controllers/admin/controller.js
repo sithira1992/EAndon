@@ -5,14 +5,41 @@
 //Staff Registration Controller for all
         .controller("StaffCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
             function ($scope, $http,$routeParams,$filter,$location) {
+                $scope.sortType     = 'name'; // set the default sort type
+                $scope.sortReverse  = false;  // set the default sort order
+                $scope.searchItem   = '';     // set the default search/filter term
+                $scope.totalDisplayed=5;      // Total to display in data  table
+                $scope.load='Load More';       //Button title
 
-            $scope.pagedItems = [];
+                $scope.NoOfStaff=0;
+                $scope.pagedItems = [];
                 $scope.messege='lol';
+
+                /*
+                 To load data more
+                 */
+
+                $scope.loadMore = function () {
+
+
+                    if($scope.totalDisplayed >= $scope.StaffDetails.length) {
+                        $scope.totalDisplayed =$scope.totalDisplayed - 5;
+                        $scope.load='Minimize';
+
+                    }
+                    else{
+
+                        $scope.load='Load More';
+                        $scope.totalDisplayed += 5;
+                    }
+                };
 
             $scope.get_staff = function () {
                 $http.get('db/staffRegistration.php?action=get_staff').success(function (data) {
                     //$scope.product_detail = data;
                     $scope.StaffDetails = data;
+
+                    $scope.NoOfStaff=$scope.StaffDetails.length;
 
                 });
             }

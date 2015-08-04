@@ -5,7 +5,7 @@
                 <h5 class="box-title">Registered Employees</h5>
                 <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                        <input type="text" name="table_search" ng-model="searchItem" class="form-control input-sm pull-right" placeholder="Search">
                         <div class="input-group-btn">
                             <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                         </div>
@@ -13,22 +13,47 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
+                <table class="table table-bordered table-striped">
                     <tbody><tr>
-                        <th>FullName</th>
-                        <th>Address</th>
-                        <th>Gender</th>
-                        <th>NIC</th>
-                        <th>Phone</th>
-                        <th>Job Positione</th>
-                        <th>Email</th>
-                        <th>Register Date</th>
-                    </tr>
-                    <tr ng-repeat="StaffDetail in StaffDetails">
+                        <th>#</th>
+                        <th><a href="#" ng-click="sortType = 'fullName'; sortReverse = !sortReverse">FullName
+                            <span ng-show="sortType == 'fullName' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'fullName' && sortReverse" class="fa fa-caret-up"></span></a></th>
 
+                        <th><a href="#" ng-click="sortType = 'address'; sortReverse = !sortReverse">Location
+                            <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'gender'; sortReverse = !sortReverse">Gender
+                            <span ng-show="sortType == 'gender' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'gender' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'nic'; sortReverse = !sortReverse">NIC
+                            <span ng-show="sortType == 'nic' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'nic' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'phone'; sortReverse = !sortReverse">Phone
+                            <span ng-show="sortType == 'phone' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'phone' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'jobPosition'; sortReverse = !sortReverse">Job Position
+                            <span ng-show="sortType == 'jobPosition' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'jobPosition' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">E-mail
+                            <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'registerDate'; sortReverse = !sortReverse">Register Date
+                            <span ng-show="sortType == 'registerDate' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'registerDate' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                    </tr>
+                    <tr ng-repeat="StaffDetail in StaffDetails | filter:searchItem | orderBy:sortType:sortReverse | limitTo:totalDisplayed ">
+                        <td>{{$index + 1}}</td>
                         <td>
                             <div ng-hide="StaffDetail.id"></div>
                             <input class="form-control"  name="name" ng-model="StaffDetail.fullName" type="text" >
+
 
                         </td>
 
@@ -87,6 +112,8 @@
 
 
                     </tbody></table>
+                <button class="btn" ng-click="loadMore()">{{load}}</button>
+                <H3> No of Registered Staff : {{NoOfStaff}}</H3>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

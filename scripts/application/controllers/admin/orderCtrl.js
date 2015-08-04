@@ -12,7 +12,8 @@
                 $scope.sortType     = 'name'; // set the default sort type
                 $scope.sortReverse  = false;  // set the default sort order
                 $scope.searchItem   = '';     // set the default search/filter term
-                $scope.totalDisplayed=5;
+                $scope.totalDisplayed=5;      // Total to display in data  table
+                $scope.load='Load More';       //Button title
 
 
                 $scope.pagedItems    =  [];
@@ -24,7 +25,17 @@
                  */
 
                 $scope.loadMore = function () {
-                    $scope.totalDisplayed += 5;
+
+                    if($scope.totalDisplayed >= $scope.details.length) {
+                        $scope.totalDisplayed =$scope.totalDisplayed - 5;
+                        $scope.load='Minimize';
+
+                    }
+                    else{
+
+                        $scope.load='Load More';
+                        $scope.totalDisplayed += 5;
+                    }
                 };
                 $scope.get_location = function() {
                     $http.get('db/SiteRegistration.php?action=get_location').success(function(data)
@@ -55,7 +66,7 @@
 
                     });
                 }
-                $scope.submit= function () {    //subite button
+                $scope.submit= function () {    //submit button
 
 
                     $scope.msgs = [];

@@ -32,11 +32,11 @@
                     });
                 }
 
-                $scope.get_suppliers = function() {
-                    $http.get('db/suppliersRegistration.php?action=get_suppliers').success(function(data)
+                $scope.get_manager = function() {
+                    $http.get('db/staffRegistration.php?action=get_manager').success(function(data)
                     {
                         //$scope.product_detail = data;
-                        $scope.details = data;
+                        $scope.managers = data;
 
                     });
                 }

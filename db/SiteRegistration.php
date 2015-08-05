@@ -51,12 +51,13 @@ function add_site()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry_em = 'select count(*) as snt from siteregistration where SiteManagerName ="' . $rgmanagername . '"';
+    $qry_em = 'select count(*) as cnt from siteregistration where SiteAddress ="' . $rgAddress . '"';
     $qry_res = mysql_query($qry_em);
     $res = mysql_fetch_assoc($qry_res);
 
     if ($res['cnt'] == 0) {
-        $qry = 'INSERT INTO siteregistration (SiteAddress,SiteManagerName,StartDate,PlanDate,ActualDate,Status,StatusOf) values ("' . $rgAddress . '","' . $rgmanagername . '","' . $rgstartdate . '","' . $rgplandate . '","' . $rgpactualdate . '","' . $rgstatues .'","'.$s.'")';
+        $qry = 'INSERT INTO siteregistration (SiteAddress,Fk_Manager,StartDate,PlanDate,ActualDate,Comments,Status) values ("' . $rgAddress . '","' . $rgmanagername . '","' . $rgstartdate . '","' . $rgplandate . '","' . $rgpactualdate . '","' . $rgstatues .'","'.$s.'")';
+        echo $qry;
         $qry_res = mysql_query($qry);
         if ($qry_res) {
             $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
@@ -100,7 +101,7 @@ function get_site()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from siteregistration where StatusOf=1 order by SiteId desc');
+    $qry = mysql_query('SELECT * from siteregistration where Status=1 order by SiteId desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -108,11 +109,11 @@ function get_site()
         $data[] = array(
             "id"            => $rows['SiteID'],
             "address"     => $rows['SiteAddress'],
-            "SiteManagerName"=> $rows['SiteManagerName'],
+            "SiteManagerName"=> $rows['Fk_Manager'],
             "StartDate"      => $rows['StartDate'],
             "PlanDate"      => $rows['PlanDate'],
             "ActualDate"    => $rows['ActualDate'],
-            "Status"        => $rows['Status']
+            "Status"        => $rows['Comments']
 
         );
     }

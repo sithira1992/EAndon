@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2015 at 12:53 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- Generation Time: Aug 05, 2015 at 08:24 PM
+-- Server version: 5.5.34
+-- PHP Version: 5.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `requestform` (
   PRIMARY KEY (`id`),
   KEY `FK_Location_idx` (`FK_Location`),
   KEY `FK_ManagerName_idx` (`FK_Manager`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `requestform`
@@ -201,7 +201,8 @@ INSERT INTO `requestform` (`id`, `FK_Location`, `FK_Manager`, `Order_Status`, `s
 (28, 5, 22, '2', '1', 'Stone', 'cube', '4', '2015-07-28', 16, '1'),
 (29, 5, 22, '3', '1', 'Chip', 'cube', '5', '2015-05-30', 17, '1'),
 (30, 5, 22, '3', '1', 'Chip', 'cube', '3', '2015-05-30', 16, '1'),
-(31, 5, 22, '2', '1', 'Sand', 'cube', '6', '2015-05-30', 16, '1');
+(31, 5, 22, '2', '1', 'Sand', 'cube', '6', '2015-05-30', 16, '1'),
+(32, 7, 21, '1', '1', 'Chip', 'cube', '5', '2015-05-29T18:30:00.000Z', 18, '1');
 
 -- --------------------------------------------------------
 
@@ -212,24 +213,23 @@ INSERT INTO `requestform` (`id`, `FK_Location`, `FK_Manager`, `Order_Status`, `s
 CREATE TABLE IF NOT EXISTS `siteregistration` (
   `SiteID` int(11) NOT NULL AUTO_INCREMENT,
   `SiteAddress` varchar(45) DEFAULT NULL,
-  `SiteManagerName` varchar(45) DEFAULT NULL,
+  `Fk_Manager` int(11) DEFAULT NULL,
   `StartDate` varchar(45) DEFAULT NULL,
   `PlanDate` varchar(45) DEFAULT NULL,
   `ActualDate` varchar(45) DEFAULT NULL,
   `Status` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SiteID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `Comments` varchar(450) DEFAULT NULL,
+  PRIMARY KEY (`SiteID`),
+  KEY `Fk_Manager_idx` (`Fk_Manager`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `siteregistration`
 --
 
-INSERT INTO `siteregistration` (`SiteID`, `SiteAddress`, `SiteManagerName`, `StartDate`, `PlanDate`, `ActualDate`, `Status`) VALUES
-(1, 'dsf', 'fdsfaaa', 'sdf', 'fds', 'fds', 'fsd'),
-(2, 'sfs', 'fsdf', 'fdsf', 'fds', 'fsd', 'dsfs'),
-(3, 'fsdf', 'dfs', 'sdfsd', 'sfs', 'sfds', 'sfs'),
-(4, 'dsg', 'gsd', 'sdg', 'sdg', 'sdg', 'sgd'),
-(5, 'Galle', 'malan', '2015/06/01', '2015/06/15', '2015/85/96', 'dsfdfsfsdfdsfsf');
+INSERT INTO `siteregistration` (`SiteID`, `SiteAddress`, `Fk_Manager`, `StartDate`, `PlanDate`, `ActualDate`, `Status`, `Comments`) VALUES
+(6, 'Yakkalamulle', 20, '', '', '', 'Goverment', '1'),
+(7, 'Yakkalamulle\nGalle', 20, '', '', '', '1', 'Goverment');
 
 -- --------------------------------------------------------
 
@@ -267,13 +267,23 @@ INSERT INTO `staffregistraion` (`id`, `fullName`, `address`, `gender`, `nic`, `p
 (13, 'a', 'a', 'male', '920915210v', '0716279549', 'saab', NULL, NULL, '0', NULL),
 (14, 'a', 'a', 'male', '920915210v', '0716279549', 'saab', NULL, NULL, '0', NULL),
 (15, 'sithira', 'Galle', 'male', '920915210v', '0716279549', 'saab', 'a@gmail.com', NULL, '1', NULL),
-(16, 'sithira', 'Galle', 'male', '920915210v', '0716279549', 'QS', 'sit@gmail.com', NULL, '1', 's'),
+(16, 'TK', 'Galle', 'male', '920915210v', '0716279549', 'QS', 'sit@gmail.com', NULL, '1', 's'),
 (17, 'sithira', 'aa', 'male', '920915211v', '0716279549', 'Site Manager', 'a@gmail.com', NULL, '1', NULL),
-(18, 'aa', 'a', 'male', '92091', '0716279549', 'volvo', 'a', NULL, '1', NULL),
-(19, 'a', 'a', 'male', '920915218v', '0716279549', 'audi', 'a@gmail.com', '0000-00-00 00:00:00', '1', NULL),
-(20, 'a', 'a', 'male', '920915213v', '0716279549', 'saab', 'a@gmail.com', NULL, '1', NULL),
+(18, 'Mahesh Udara', 'a', 'male', '92091', '0716279549', 'QS', 'a', NULL, '1', NULL),
+(19, 'Tk', 'a', 'male', '920915218v', '0716279549', 'Site Manager', 'a@gmail.com', '0000-00-00 00:00:00', '1', NULL),
+(20, 'Mahesh', 'a', 'male', '920915213v', '0716279549', 'Site Manager', 'a@gmail.com', NULL, '1', NULL),
 (21, 'sithira', 'Galle', 'male', '900910528v', '0716279549', 'Admin', 'a@gmail.com', NULL, '1', 'a'),
 (22, 'sithira Pramudith', 'Galle\nImaduwa', 'male', '92091528v', '0716279549', 'Admin', 'sith@gmail.com', '2015-07-25 00:00:00', '1', 'aaa');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `siteregistration`
+--
+ALTER TABLE `siteregistration`
+  ADD CONSTRAINT `Fk` FOREIGN KEY (`Fk_Manager`) REFERENCES `staffregistraion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

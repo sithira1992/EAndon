@@ -103,6 +103,15 @@
             };
             $stateProvider.state(UpdateItemDetails);
 
+            var UserAccount = {
+                name: "UserAccount",
+                url: '/UserAccount',
+                templateUrl: './views/admin/UserAccount.html',
+                controller: ''
+            };
+            $stateProvider.state(UserAccount);
+
+
 
         }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location','$cookieStore','$http','$window',
         function($rootScope, $state, $stateParams, ajaxService, $location,$cookieStore,$http,$window) {

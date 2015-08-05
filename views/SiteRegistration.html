@@ -6,7 +6,7 @@
         </br>
         </br>
         </br>
-        <div class="box box-info">
+        <div class="box box-info" ng-init="get_manager()">
             <div class="bg-aqua color-palette">
                 <div class="box-header with-border">
                     <h1 align="center"><b><i>Site Registeration</i></b></h1>
@@ -34,9 +34,9 @@
                             <label  class="col-sm-2 control-label" >Manager</label>
 
                             <div class="col-sm-10">
-                                <div class="input-group input-group-md">
-                                <input class="form-control" id="rgmanagername" name="name" ng-model="rgmanagername" type="text"placeholder="Enter Manager" value=""  required="" >
-                                    </div>
+                                <select class="form-control" style="width:270px" ng-model="rgmanagername">
+                                    <option ng-repeat="manager in managers" ng-if="manager.position=='Site Manager'" value="{{manager.id}}">{{manager.full_name}}</option>                                </select>
+
                             </div>
                         </div>
                         </br>

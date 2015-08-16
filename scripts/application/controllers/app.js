@@ -111,6 +111,15 @@
             };
             $stateProvider.state(UserAccount);
 
+            var OrderApproval = {
+                name: "OrderApproval",
+                url: '/OrderApproval',
+                templateUrl: './views/OrderApproval.html',
+                controller: 'orderCtrl'
+            };
+            $stateProvider.state(OrderApproval);
+
+
 
 
         }]).run(['$rootScope', '$state', '$stateParams', 'ajaxService', '$location','$cookieStore','$http','$window',

@@ -1,0 +1,83 @@
+
+<div class="row" ng-init="get_Order_details()">
+    <div class="col-xs-12">
+        <div class="box">
+            <form>
+                <div class="box-header">
+                    <h5 class="box-title">Order Table</h5>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 150px;">
+                            <input type="text" name="table_search" ng-model="searchItem" class="form-control input-sm pull-right" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <thead><tr>
+                        <th>No</th>
+                        <th><a href="#" ng-click="sortType = 'SiteAddress'; sortReverse = !sortReverse">Location
+                            <span ng-show="sortType == 'SiteAddress' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'SiteAddress' && sortReverse" class="fa fa-caret-up"></span>
+                        </a></th>
+                        <th><a href="#" ng-click="sortType = 'fullname'; sortReverse = !sortReverse">Manager
+                            <span ng-show="sortType == 'fullname' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'fullname' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'Item'; sortReverse = !sortReverse">Item
+                            <span ng-show="sortType == 'Item' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'Item' && sortReverse" class="fa fa-caret-up"></span></a>
+                        </th>
+                        <th><a href="#" ng-click="sortType = 'Unit'; sortReverse = !sortReverse">Unit
+                            <span ng-show="sortType == 'Unit' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'Unit' && sortReverse" class="fa fa-caret-up"></span></a></th>
+
+                        <th><a href="#" ng-click="sortType = 'Quantity'; sortReverse = !sortReverse">Quantity
+
+                            <span ng-show="sortType == 'Quantity' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'Quantity' && sortReverse" class="fa fa-caret-up"></span></a>
+
+                        <th><a href="#" ng-click="sortType = 'Date'; sortReverse = !sortReverse">Request Date
+                            <span ng-show="sortType == 'Date' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'Date' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                        <th>Status</th>
+                    </tr><thead>
+                <tr ng-repeat="detail in details  | filter:searchItem | orderBy:sortType:sortReverse | limitTo:totalDisplayed ">
+                    <td>{{$index + 1}}</td>
+                    <td>{{detail.SiteAddress}}</td>
+                    <td class="center">{{detail.fullname}}</td>
+                    <td class="center">{{detail.Item}}</td>
+                    <td class="center">{{detail.Unit}}</td>
+                    <td class="center">  <input type="text" name="doj"  ng-model="detail.Quantity" width="100px" ></td>
+                    <td class="center">{{detail.Date}}</td>
+                    <td class="center">
+                        <span class="label  label-danger" ng-if="detail.Status==0">Denied</span>
+                        <span class="label label-warning" ng-if="detail.Status==1">Pending</span>
+                        <span class="label label-primary" ng-if="detail.Status==2">QS Approved</span>
+                        <span class="label label-success" ng-if="detail.Status==3">Admin Approved</span>
+                    </td>
+                    <td class="center">
+                        <button class="btn btn-block btn-success" ng-click="Update(detail)">Approved</button>
+                        <button class="btn btn-block btn-danger" ng-click="Update(detail)">Delete</button>
+
+                    </td>
+                </tr>
+
+
+
+                    </tbody></table>
+                <button class="btn" ng-click="loadMore()">{{load}}</button>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
+
+

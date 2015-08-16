@@ -7,8 +7,8 @@
 
 
 
-        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location',
-            function ($scope, $http,$routeParams,$filter,$location) {
+        .controller("orderCtrl", ['$scope', '$http','$routeParams',  '$filter', '$location','$rootScope',
+            function ($scope, $http,$routeParams,$filter,$location,$rootScope) {
                 $scope.sortType     = 'name'; // set the default sort type
                 $scope.sortReverse  = false;  // set the default sort order
                 $scope.searchItem   = '';     // set the default search/filter term
@@ -68,7 +68,6 @@
                 }
                 $scope.submit= function () {    //submit button
 
-
                     $scope.msgs = [];
                     $http.post('db/RequestForm.php?action=add_request',{'locId':$scope.locId,'mngId':$scope.mngId,'item':$scope.item,
                         'measure':$scope.measure,'quantity':$scope.quantity,'date':$scope.date,'to':$scope.toId}).success(function(data, status, headers, config) {
@@ -121,7 +120,33 @@
                 }
 
 
+                $scope.Update= function (detail) {    //submit button
 
+alert($rootScope.globals.currentUser.position+'lol');
+                    $scope.msgs = [];
+                    $http.post('db/RequestForm.php?action=update_request',{'id':detail.id,
+                        'quantity':detail.Quantity,'status':'2','position':$rootScope.globals.currentUser.position}).success(function(data, status, headers, config) {
+                        if (data.msg != '')
+                        {
+
+
+                            msgs="**Order Create Successfully**"
+                            $scope.get_Order_details();
+                            $scope.messege='Order Send to Admin To Approve ';
+                            $scope.notify('success');
+                            $scope.msgs.push(msgs);
+                        }
+                        else
+                        {
+                            msgs="**Order Not Create Successfully**"
+                            $scope.msgs.push(msgs);
+                        }
+                    }).error(function(data, status) { // called asynchronously if an error occurs
+// or server returns response with an error status.
+                        $scope.msgs.push(status);
+
+                    });
+                }
 
 
 

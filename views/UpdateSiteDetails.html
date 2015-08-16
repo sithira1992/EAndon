@@ -23,7 +23,7 @@
                         <th>Start Date</th>
                         <th>Plan Date</th>
                         <th>Actual Date</th>
-                        <th>Status</th>
+                        <th>Comment</th>
 
                     </tr>
                     <tr ng-repeat="siteDetail in siteDetails">
@@ -35,10 +35,10 @@
                             <input class="form-control"  name="name" ng-model="siteDetail.SiteManagerName" type="text"placeholder="Enter Manager" value=""  required="" >
                         </td>
                         <td class="center">
-                            <input type="text" name="doj"  ng-model="siteDetail.StartDate" width="100px" >
+                         {{siteDetail.StartDate}}
                         </td>
                         <td class="center">
-                            <input type="date" name="doj"  ng-model="siteDetail.PlanDate" width="100px" >
+                           {{siteDetail.PlanDate}}
                         </td>
                         <td class="center">
                             <input type="date" name="doj"  ng-model="siteDetail.ActualDate" width="100px" >

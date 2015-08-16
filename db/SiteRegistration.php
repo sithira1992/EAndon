@@ -101,7 +101,21 @@ function get_site()
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
-    $qry = mysql_query('SELECT * from siteregistration where Status=1 order by SiteId desc');
+    $qry = mysql_query('Select
+  siteregistration.SiteID,
+  staffregistraion.fullName,
+  siteregistration.SiteAddress,
+  siteregistration.StartDate,
+  siteregistration.PlanDate,
+  siteregistration.ActualDate,
+  siteregistration.Comments
+From
+  siteregistration Inner Join
+  staffregistraion On siteregistration.Fk_Manager = staffregistraion.id
+Where
+  siteregistration.Status = 1
+Order By
+  siteregistration.SiteID Desc');
 
     $data = array();
     while($rows = mysql_fetch_array($qry))
@@ -109,7 +123,7 @@ function get_site()
         $data[] = array(
             "id"            => $rows['SiteID'],
             "address"     => $rows['SiteAddress'],
-            "SiteManagerName"=> $rows['Fk_Manager'],
+            "SiteManagerName"=> $rows['fullName'],
             "StartDate"      => $rows['StartDate'],
             "PlanDate"      => $rows['PlanDate'],
             "ActualDate"    => $rows['ActualDate'],

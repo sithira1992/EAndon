@@ -23,8 +23,8 @@ switch($_GET['action'])  {
         delete_product();
         break;
 
-    case 'update_staff' :
-        update_staff();
+    case 'update_request' :
+        update_request();
         break;
 }
 
@@ -93,27 +93,42 @@ where r.FK_Location=s.SiteID and r.FK_Manager=st.id and r.status=1 order by r.id
 
 
 
-function update_staff()
+function update_request()
 {
     $data = json_decode(file_get_contents("php://input"));
-    $suppliername = mysql_real_escape_string($data->StaffDetail.fullname);
-    $supplieraddress = mysql_real_escape_string($data->StaffDetail.address);
-    $supplierphone = mysql_real_escape_string($data->StaffDetail.gender);
-    $supplieremail = mysql_real_escape_string($data->StaffDetail.nic);
-    $supplieritem = mysql_real_escape_string($data->StaffDetail.phone);
-    $supplierunitprice = mysql_real_escape_string($data->StaffDetail.jobPosition);
-    $supplierstatues = mysql_real_escape_string($data->StaffDetail.emails);
+    $quantity = mysql_real_escape_string($data->quantity);
+    $id = mysql_real_escape_string($data->id);
+    $status= mysql_real_escape_string($data->status);
+    $position=mysql_real_escape_string($data->position);
 
-//$upswd = mysql_real_escape_string($data->pswd);
-//$uemail = mysql_real_escape_string($data->email);
+    if($position=='QS'){
+        $FK_Qs='Qs_Status';
+        $Stat='2';
+        echo $FK_Qs;
 
+    }
     $con = mysql_connect('localhost', 'root', '');
     mysql_select_db('ranweli', $con);
 
 
-    $qry_em = 'select count(*) as ant from registersupplier where phone ="' . $supplierphone . '"';
-    $qry_res = mysql_query($qry_em);
-    $res = mysql_fetch_assoc($qry_res);
+
+
+    $qry = 'UPDATE requestform SET Quantity="'.$quantity.'",Order_Status="'.$status.'",'.$FK_Qs.'="'.$Stat.'"
+
+        WHERE id="'.$id.'"';
+
+    echo $qry;
+
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
 
 
 }
@@ -123,6 +138,10 @@ function get_OrderDetails_request()
 {
     $data = json_decode(file_get_contents("php://input"));
     $id = mysql_real_escape_string($data->id);
+
+
+
+
  // echo 'lol'.$id;
   //  echo 'lol'.$id;
     $con = mysql_connect('localhost', 'root', '');

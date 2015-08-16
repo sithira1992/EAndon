@@ -19,11 +19,16 @@ switch($_GET['action'])  {
         get_OrderDetails_request();
         break;
 
-    case 'delete_product' :
-        delete_product();
+    case 'delete_request' :
+        delete_request();
         break;
 
     case 'update_request' :
+        update_request();
+        break;
+
+
+    case 'update_request2' :
         update_request();
         break;
 }
@@ -101,6 +106,7 @@ function update_request()
     $status= mysql_real_escape_string($data->status);
     $position=mysql_real_escape_string($data->position);
 
+    echo 'lol';
     if($position=='QS'){
         $FK_Qs='Qs_Status';
         $Stat='2';
@@ -113,7 +119,7 @@ function update_request()
 
 
 
-    $qry = 'UPDATE requestform SET Quantity="'.$quantity.'",Order_Status="'.$status.'",'.$FK_Qs.'="'.$Stat.'"
+    $qry = 'UPDATE requestform SET Qs_Quantity="'.$quantity.'",Order_Status="'.$status.'",'.$FK_Qs.'="'.$Stat.'"
 
         WHERE id="'.$id.'"';
 
@@ -133,7 +139,48 @@ function update_request()
 
 }
 
+function delete_request()
+{
+    $data = json_decode(file_get_contents("php://input"));
+    $quantity = mysql_real_escape_string($data->quantity);
+    $id = mysql_real_escape_string($data->id);
+    $status= mysql_real_escape_string($data->status);
+    $position=mysql_real_escape_string($data->position);
 
+    echo 'lol';
+    if($position=='QS'){
+        $FK_Qs='Qs_Status';
+        $Stat='2';
+        echo $FK_Qs;
+
+    }
+    $con = mysql_connect('localhost', 'root', '');
+    mysql_select_db('ranweli', $con);
+
+
+
+    $qry = 'UPDATE requestform SET Order_Status="'.$status.'",'.$FK_Qs.'="'.$Stat.'"
+
+
+
+
+        WHERE id="'.$id.'"';
+
+    echo $qry;
+
+    $qry_res = mysql_query($qry);
+    if ($qry_res) {
+        $arr = array('msg' => "User Created Successfully!!!", 'error' => '');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    } else {
+        $arr = array('msg' => "", 'error' => 'Error In inserting record');
+        $jsn = json_encode($arr);
+        print_r($jsn);
+    }
+
+
+}
 function get_OrderDetails_request()
 {
     $data = json_decode(file_get_contents("php://input"));

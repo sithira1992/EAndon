@@ -115,7 +115,7 @@
                 name: "OrderApproval",
                 url: '/OrderApproval',
                 templateUrl: './views/OrderApproval.html',
-                controller: 'orderCtrl'
+                controller: 'orderApprovalCtrl'
             };
             $stateProvider.state(OrderApproval);
 

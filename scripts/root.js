@@ -54,7 +54,7 @@
 
                                 if (data.length > 0) {
 
-                                    $scope.messeges = 'You Receive ' + data.length + ' Order Request to Approve <a href="#/Order">link</a>';
+                                    $scope.messeges = 'You Receive ' + data.length + ' Order Request to Approve <a href="#/OrderApproval">link</a>';
                                     $scope.notify('info');
                                 }
 
